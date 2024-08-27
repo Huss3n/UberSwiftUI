@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct UberSwiftUIApp: App {
+    @StateObject var locationSearchVM = LocationSearchVM()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Home()
+                .environmentObject(locationSearchVM)
         }
     }
 }
