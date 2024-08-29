@@ -34,7 +34,7 @@ struct HumbugerButton: View {
     func imageName() -> String {
         switch mapState {
         case .noInput:
-            return "line.3.horizontal"
+            return "person.fill"
         case .locationSelected, .searchingForLocation:
             return "arrow.left"
         }
