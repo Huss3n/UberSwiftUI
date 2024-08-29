@@ -32,6 +32,19 @@ final class LocationSearchVM: NSObject, ObservableObject, MKLocalSearchCompleter
         self.results = searchCompleter.results
     }
     
+    var userLocation: CLLocationCoordinate2D?
+    
+    
+    func calculateTripAmount(for carType: CarSelection) -> Double {
+        guard let destinationCoordinate = selectedLocationCoordinates else { return 0.0 }
+        guard let userCoordinate = userLocation else { return 0.0 }
+        
+        let userLocation = CLLocation(latitude: userCoordinate.latitude, longitude: userCoordinate.longitude)
+        let destinationLocation = CLLocation(latitude: destinationCoordinate.latitude, longitude: destinationCoordinate.longitude)
+        let distanceInMeters = userLocation.distance(from: destinationLocation)
+        print("Distance in meters \(distanceInMeters)")
+        return carType.calculatePriceInMeters(meters: distanceInMeters)
+    }
     
     // MARK: -Helper
     func selectLocation(_ locationSearch: MKLocalSearchCompletion) {
