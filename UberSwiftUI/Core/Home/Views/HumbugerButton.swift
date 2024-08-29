@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HumbugerButton: View {
     @Binding var mapState: MapState
+    @EnvironmentObject var locationSearchVM: LocationSearchVM
     
     var body: some View {
         Button {
@@ -48,6 +49,7 @@ struct HumbugerButton: View {
             mapState = .noInput
         case .searchingForLocation:
             mapState = .noInput
+            locationSearchVM.selectedLocationCoordinates = nil
         }
     }
 }
