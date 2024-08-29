@@ -11,43 +11,47 @@ struct RequestPop: View {
     @State var carSelection: CarSelection = .uberx
     
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 12) {
+            
+            Rectangle()
+                .fill(Color(.systemGray4))
+                .frame(width: 30, height: 4)
+                .padding(.vertical, 8)
+            
             // MARK: Begin hstack
             HStack {
                 VStack {
                     Circle()
                         .fill(.gray.opacity(0.6))
-                        .frame(width: 6, height: 6)
+                        .frame(width: 10, height: 10)
                     
                     Rectangle()
                         .fill(.gray.opacity(0.7))
-                        .frame(width: 1, height: 24)
+                        .frame(width: 1, height: 34)
                     
                     Rectangle()
                         .fill(.primary)
-                        .frame(width: 6, height: 6)
+                        .frame(width: 10, height: 10)
                 }
                 
                 // MARK: Location
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 38) {
                     Text("Current location")
                         .foregroundStyle(.gray)
                     
                     Text("Selected destination")
                 }
-                
                 Spacer()
                 
                 // MARK: Time
-                /// MARK: Begin hstack
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 38) {
                     Text("4:55pm")
                     Text("5.30pm")
                 }
                 .foregroundStyle(.gray)
                 
             }
-            /// MARK: End hstack
+            .frame(maxWidth: .infinity, alignment: .leading)
             
             Divider()
                 .padding(.vertical, 10)
@@ -57,31 +61,33 @@ struct RequestPop: View {
                 .foregroundStyle(Color(.systemGray))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            /// MARK: Begin hstack - suggested cars
-            HStack(spacing: 10) {
-                CarType(
-                    imageName: "uberx",
-                    carSelected: .uberx,
-                    price: 500,
-                    backgroundColor: carSelection == .uberx ? .blue : Color(.systemGray5))
-                    .onTapGesture { carSelection = .uberx }
-                
-                CarType(
-                    imageName: "comfort",
-                    carSelected: .uberComfort,
-                    price: 700,
-                    backgroundColor: carSelection == .uberComfort ? .blue : Color(.systemGray5))
-                    .onTapGesture { carSelection = .uberComfort }
-                
-                CarType(
-                    imageName: "green",
-                    carSelected: .ubergreen,
-                    price: 900,
-                    backgroundColor: carSelection == .ubergreen ? .blue : Color(.systemGray5))
-                    .onTapGesture { carSelection = .ubergreen }
-                
+            // MARK: Begin hstack - suggested cars
+            ScrollView(.horizontal) {
+                HStack(spacing: 10) {
+                    CarType(
+                        imageName: "uberx",
+                        carSelected: .uberx,
+                        price: 500,
+                        backgroundColor: carSelection == .uberx ? .blue : Color(.systemGray5))
+                        .onTapGesture { carSelection = .uberx }
+                    
+                    CarType(
+                        imageName: "comfort",
+                        carSelected: .uberComfort,
+                        price: 700,
+                        backgroundColor: carSelection == .uberComfort ? .blue : Color(.systemGray5))
+                        .onTapGesture { carSelection = .uberComfort }
+                    
+                    CarType(
+                        imageName: "green",
+                        carSelected: .ubergreen,
+                        price: 900,
+                        backgroundColor: carSelection == .ubergreen ? .blue : Color(.systemGray5))
+                        .onTapGesture { carSelection = .ubergreen }
+                    
+                }
             }
-            /// MARK: End hstack - suggested cars
+            .scrollIndicators(.hidden)
             
             // MARK: Card
             HStack {
@@ -98,30 +104,31 @@ struct RequestPop: View {
             }
             .font(.headline)
             .padding(.horizontal)
-            .padding(.vertical, 8)
+            .padding(.vertical, 4)
             .background(Color(.systemGray5))
             .cornerRadius(10)
-            
             
             // MARK: Request ride
             Button(action: {
                 
             }, label: {
-                Text("Request ride".uppercased())
+                Text("Request \(carSelection.carName.uppercased())".uppercased())
+                    .font(.headline)
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 55)
+                    .frame(height: 45)
                     .background(Color(.systemBlue))
                     .cornerRadius(10)
             })
             
-            Spacer()
-            
         }
         .padding(.horizontal)
-        .padding(.top, 16)
+        .padding(.bottom, 28)
+        .background(.white)
+        .clipShape(.rect(topLeadingRadius: 20, topTrailingRadius: 20))
     }
 }
+
 
 #Preview {
     RequestPop()

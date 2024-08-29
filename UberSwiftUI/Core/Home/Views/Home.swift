@@ -8,28 +8,38 @@
 import SwiftUI
 
 struct Home: View {
-    @State private var mapState: MapState = .noInput
+    @State var mapState: MapState = .noInput
     
     var body: some View {
-        ZStack(alignment: .top) {
-            UberMapView(mapState: $mapState)
-                .ignoresSafeArea()
+        ZStack(alignment: .bottom) {
             
-            if mapState == .searchingForLocation {
-                SearchView(mapState: $mapState)
-            
-            } else if mapState == .noInput {
-                LocationSearchView()
-                    .padding(.top, 58)
-                    .onTapGesture {
-                        withAnimation(.spring) {
-                            mapState = .searchingForLocation
+            ZStack(alignment: .top) {
+                UberMapView(mapState: $mapState)
+                    .ignoresSafeArea()
+                
+                if mapState == .searchingForLocation {
+                    SearchView(mapState: $mapState)
+                    
+                } else if mapState == .noInput {
+                    LocationSearchView()
+                        .padding(.top, 64)
+                        .onTapGesture {
+                            withAnimation(.spring) {
+                                mapState = .searchingForLocation
+                            }
                         }
-                    }
+                }
+                HumbugerButton(mapState: $mapState)
             }
             
-            HumbugerButton(mapState: $mapState)
+            if mapState == .locationSelected {
+                RequestPop()
+                    .transition(.move(edge: .bottom))
+                    .zIndex(1)  
+            }
         }
+        .ignoresSafeArea(edges: .bottom)
+       
     }
 }
 

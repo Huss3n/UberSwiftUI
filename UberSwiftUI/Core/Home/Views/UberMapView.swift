@@ -101,7 +101,6 @@ class MapCoordinator: NSObject, MKMapViewDelegate {
         print("Coordinate in the map coordinator \(anno.coordinate)")
         parent.mapView.addAnnotation(anno)
         parent.mapView.selectAnnotation(anno, animated: true)
-        parent.mapView.showAnnotations(parent.mapView.annotations, animated: true)
     }
     
     func drawRouteToDestination(to destinationCoordinate: CLLocationCoordinate2D) {
@@ -113,6 +112,8 @@ class MapCoordinator: NSObject, MKMapViewDelegate {
         getTripRoute(from: userloc, to: destinationCoordinate) { route in
             print("Route to be drawn is \(route)")
             self.parent.mapView.addOverlay(route.polyline)
+            let rectangle = self.parent.mapView.mapRectThatFits(route.polyline.boundingMapRect, edgePadding: .init(top: 64, left: 32, bottom: 500, right: 32))
+            self.parent.mapView.setRegion(MKCoordinateRegion(rectangle), animated: true)
         }
     }
     
