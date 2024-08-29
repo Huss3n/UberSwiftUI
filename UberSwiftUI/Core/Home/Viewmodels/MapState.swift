@@ -8,8 +8,12 @@
 import Foundation
 
 
-enum MapState {
+enum MapState: Identifiable {
     case noInput
     case locationSelected
     case searchingForLocation
+    
+    var id: Int {
+        hashValue
+    }
 }
