@@ -192,9 +192,9 @@ enum CarSelection {
     
     func calculatePriceInMeters(meters: Double) -> Double {
         switch self {
-        case .uberx: return (meters * 0.3) + basePrice
-        case .uberComfort:  return (meters * 0.6) + basePrice
-        case .ubergreen:  return (meters * 0.4) + basePrice
+        case .uberx: return (meters * 0.15) + basePrice
+        case .uberComfort:  return (meters * 0.25) + basePrice
+        case .ubergreen:  return (meters * 0.2) + basePrice
         }
     }
     

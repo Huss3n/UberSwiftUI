@@ -13,8 +13,10 @@ struct UberSwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Home()
-                .environmentObject(locationSearchVM)
+            NavigationStack {
+                Home()
+                    .environmentObject(locationSearchVM)
+            }
         }
     }
 }

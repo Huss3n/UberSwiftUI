@@ -38,6 +38,8 @@ struct UberMapView: UIViewRepresentable {
                 context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate.coordinate)
                 context.coordinator.drawRouteToDestination(to: coordinate.coordinate)
             }
+        case .profile:
+            break
         }
     }
     
