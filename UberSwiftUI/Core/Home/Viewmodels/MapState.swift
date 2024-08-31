@@ -12,6 +12,7 @@ enum MapState: Identifiable {
     case noInput
     case locationSelected
     case searchingForLocation
+    case profile
     
     var id: Int {
         hashValue
