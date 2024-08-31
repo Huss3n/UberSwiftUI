@@ -44,6 +44,11 @@ struct Settings: View {
                             .font(.title3)
                             .foregroundStyle(.red)
                             .fontWeight(.semibold)
+                        
+                        
+                        Rectangle()
+                            .fill(.blue.opacity(0.001))
+                            .frame(height: 20)
                     }
                     
                 }
