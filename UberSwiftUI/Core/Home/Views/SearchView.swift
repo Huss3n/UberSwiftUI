@@ -65,7 +65,7 @@ struct SearchView: View {
             }
             .scrollIndicators(.hidden)
         }
-        .background(.white)
+        .background(Color.appTheme.backgroundColor)
     }
 }
 
