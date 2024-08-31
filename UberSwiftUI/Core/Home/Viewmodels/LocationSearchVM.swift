@@ -54,10 +54,8 @@ final class LocationSearchVM: NSObject, ObservableObject, MKLocalSearchCompleter
     func getPickupAndDropoffTime(with ETA: Double) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
-        
         pickupTime = dateFormatter.string(from: Date())
         dropoffTime = dateFormatter.string(from: Date() + ETA)
-        
     }
     
     func getTripRoute(

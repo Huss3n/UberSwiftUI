@@ -21,7 +21,7 @@ struct SettingsRow: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Text(title)
-                        .font(.title2)
+                        .font(.title3)
                     
                     if let subtitle {
                         Text(subtitle)
@@ -34,7 +34,7 @@ struct SettingsRow: View {
                 
                 if showIcon ?? false {
                     Image(systemName: "chevron.right")
-                        .font(.title3)
+                        .font(.headline)
                 }
             }
             
@@ -46,7 +46,6 @@ struct SettingsRow: View {
             
           
         }
-        .padding(.horizontal)
     }
 }
 
