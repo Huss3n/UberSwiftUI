@@ -5,12 +5,13 @@
 //  Created by Muktar Aisak on 31/08/2024.
 //
 
-import SafariServices
 import SwiftUI
 
 struct Profile: View {
     @State var showSettings: Bool = false
     @State var showMessages: Bool = false
+    @State var showSafari: Bool = false
+    @State var showManageAccount: Bool = false
     @Environment(\.dismiss) var dismiss
     
     
@@ -40,19 +41,58 @@ struct Profile: View {
                         SettingsRow(systemImage: "envelope.fill", title: "Messages")
                             .onTapGesture { showMessages.toggle() }
                         
-                        SettingsRow(systemImage: "car.fill", title: "Earn by driving or delivering")
-                        SettingsRow(systemImage: "briefcase.fill", title: "Setup your business profile", subtitle: "Automate work travel & meals")
-                        SettingsRow(systemImage: "tag.fill", title: "Uber Eats promotions")
+                        Button {
+                            showSafari.toggle()
+                        } label: {
+                            SettingsRow(systemImage: "car.fill", title: "Earn by driving or delivering")
+                        }
+                        .tint(.primary)
+                        .popover(isPresented: $showSafari) {
+                            SafariViewWrapper(url: URL(string: "https://www.uber.com")!)
+                        }
+                        
+                        Button {
+                            showSafari.toggle()
+                        } label: {
+                            SettingsRow(systemImage: "briefcase.fill", title: "Setup your business profile", subtitle: "Automate work travel & meals")                        }
+                        .tint(.primary)
+                        .popover(isPresented: $showSafari) {
+                            SafariViewWrapper(url: URL(string: "https://www.uber.com")!)
+                        }
+                        
+                        
+                        
+                        Button {
+                            showSafari = true
+                        } label: {
+                            SettingsRow(systemImage: "tag.fill", title: "Uber Eats promotions")          }
+                        .tint(.primary)
+                        .popover(isPresented: $showSafari) {
+                            SafariViewWrapper(url: URL(string: "https://www.uber.com")!)
+                        }
+                        
                         SettingsRow(systemImage: "heart.fill", title: "Uber Eats Favorites")
                         SettingsRow(systemImage: "person.2", title: "Refer friends to get deals")
                         SettingsRow(systemImage: "person.fill", title: "Manage Uber Account")
-                        SettingsRow(systemImage: "info.circle.fill", title: "Legal")
+                            .onTapGesture {
+                                showManageAccount.toggle()
+                            }
+                        
+                        Button {
+                            showSafari = true
+                        } label: {
+                            SettingsRow(systemImage: "info.circle.fill", title: "Legal")                       }
+                        .tint(.primary)
+                        .popover(isPresented: $showSafari) {
+                            SafariViewWrapper(url: URL(string: "https://www.uber.com/legal/en/")!)
+                        }
                         
                         Text("v3.629.1000000")
                             .font(.subheadline)
                             .foregroundStyle(.gray)
                             .padding(.horizontal)
                     }
+                    .padding(.horizontal)
                     
                 }
                 .scrollIndicators(.hidden)
@@ -75,6 +115,9 @@ struct Profile: View {
             })
             .fullScreenCover(isPresented: $showMessages, content: {
                 Messages(showMessages: $showMessages)
+            })
+            .fullScreenCover(isPresented: $showManageAccount, content: {
+                ManageProfile(showManageAccount: $showManageAccount)
             })
         }
         
