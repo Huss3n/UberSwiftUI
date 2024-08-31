@@ -6,3 +6,9 @@
 //
 
 import Foundation
+import CoreLocation
+
+struct TripLocation {
+    let title: String
+    let coordinate: CLLocationCoordinate2D
+}

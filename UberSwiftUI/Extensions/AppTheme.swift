@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-extension AppTheme {
-    
+extension Color {
+    static let appTheme = AppTheme()
 }
 
 struct AppTheme {
-    
+    let backgroundColor = Color("backgroundColor")
+    let textColor = Color("textColor")
+    let secondaryColor = Color("secondaryColor")
 }

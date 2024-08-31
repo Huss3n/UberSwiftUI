@@ -49,7 +49,7 @@ struct HumbugerButton: View {
             mapState = .noInput
         case .searchingForLocation:
             mapState = .noInput
-            locationSearchVM.selectedLocationCoordinates = nil
+            locationSearchVM.selectedTripLocation = nil
         }
     }
 }
