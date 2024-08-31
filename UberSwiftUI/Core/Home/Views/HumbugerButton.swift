@@ -34,7 +34,7 @@ struct HumbugerButton: View {
     
     func imageName() -> String {
         switch mapState {
-        case .noInput:
+        case .noInput, .profile:
             return "person.fill"
         case .locationSelected, .searchingForLocation:
             return "arrow.left"
@@ -44,12 +44,14 @@ struct HumbugerButton: View {
     func trigger(_ state: MapState) {
         switch mapState {
         case .noInput:
-            print("DEBUG: No input")
+            mapState = .profile
         case .locationSelected:
             mapState = .noInput
         case .searchingForLocation:
             mapState = .noInput
             locationSearchVM.selectedTripLocation = nil
+        case .profile:
+            break
         }
     }
 }

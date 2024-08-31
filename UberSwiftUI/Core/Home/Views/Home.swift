@@ -10,6 +10,7 @@ import SwiftUI
 struct Home: View {
     @State var mapState: MapState = .noInput
     @EnvironmentObject var locationSearchVM: LocationSearchVM
+    @State private var showProfileView: Bool = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -42,6 +43,18 @@ struct Home: View {
         .ignoresSafeArea(edges: .bottom)
         .onReceive(LocationManager.shared.$userLocation, perform: { location in
             locationSearchVM.userLocation = location
+        })
+        .onChange(of: mapState) {
+            if mapState == .profile {
+                showProfileView.toggle()
+            }
+        }
+        .navigationDestination(isPresented: $showProfileView, destination: {
+            Profile()
+                .navigationBarBackButtonHidden()
+                .onDisappear {
+                    mapState = .noInput
+                }
         })
     }
 }
