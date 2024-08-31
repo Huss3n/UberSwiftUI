@@ -40,14 +40,17 @@ struct RequestPop: View {
                     Text("Current location")
                         .foregroundStyle(.gray)
                     
-                    Text("Selected destination")
+                    Text(locationSearchVM.selectedTripLocation?.title ?? "")
                 }
                 Spacer()
                 
                 // MARK: Time
                 VStack(alignment: .leading, spacing: 38) {
-                    Text("4:55pm")
-                    Text("5.30pm")
+                    // pick up
+                    Text(locationSearchVM.pickupTime ?? "1:30am")
+                    
+                    // drop off
+                    Text(locationSearchVM.dropoffTime ?? "2:15pm")
                 }
                 .foregroundStyle(.gray)
                 
@@ -125,7 +128,7 @@ struct RequestPop: View {
         }
         .padding(.horizontal)
         .padding(.bottom, 28)
-        .background(.white)
+        .background(Color.appTheme.backgroundColor)
         .clipShape(.rect(topLeadingRadius: 20, topTrailingRadius: 20))
     }
 }
