@@ -10,6 +10,7 @@
 		774820302C835C28002615A1 /* ManageProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748202F2C835C28002615A1 /* ManageProfile.swift */; };
 		774820322C835D0F002615A1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820312C835D0F002615A1 /* SafariView.swift */; };
 		774820342C836CC2002615A1 /* AccountTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820332C836CC1002615A1 /* AccountTabs.swift */; };
+		7748203C2C85911A002615A1 /* UberSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748203B2C85911A002615A1 /* UberSwiftUITests.swift */; };
 		779A5D2F2C7E21B300B13CA7 /* RequestPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D2E2C7E21B300B13CA7 /* RequestPop.swift */; };
 		779A5D312C80815400B13CA7 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D302C80815400B13CA7 /* Double.swift */; };
 		779A5D332C80A9B000B13CA7 /* PickupLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D322C80A9B000B13CA7 /* PickupLocation.swift */; };
@@ -32,10 +33,22 @@
 		77D5324B2C7C9CAF00AA894E /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D5324A2C7C9CAF00AA894E /* MapState.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7748203D2C85911A002615A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77D532162C79CE3D00AA894E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77D5321D2C79CE3D00AA894E;
+			remoteInfo = UberSwiftUI;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		7748202F2C835C28002615A1 /* ManageProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfile.swift; sourceTree = "<group>"; };
 		774820312C835D0F002615A1 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		774820332C836CC1002615A1 /* AccountTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTabs.swift; sourceTree = "<group>"; };
+		774820392C85911A002615A1 /* UberSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7748203B2C85911A002615A1 /* UberSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberSwiftUITests.swift; sourceTree = "<group>"; };
 		779A5D2E2C7E21B300B13CA7 /* RequestPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPop.swift; sourceTree = "<group>"; };
 		779A5D302C80815400B13CA7 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		779A5D322C80A9B000B13CA7 /* PickupLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupLocation.swift; sourceTree = "<group>"; };
@@ -60,6 +73,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		774820362C85911A002615A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77D5321B2C79CE3D00AA894E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7748203A2C85911A002615A1 /* UberSwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7748203B2C85911A002615A1 /* UberSwiftUITests.swift */,
+			);
+			path = UberSwiftUITests;
+			sourceTree = "<group>";
+		};
 		779A5D362C831ED000B13CA7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +105,7 @@
 				7748202F2C835C28002615A1 /* ManageProfile.swift */,
 				774820332C836CC1002615A1 /* AccountTabs.swift */,
 				774820312C835D0F002615A1 /* SafariView.swift */,
+				779A5D3D2C8357A600B13CA7 /* Messages.swift */,
 				779A5D3B2C833BD600B13CA7 /* SettingsRow.swift */,
 				779A5D392C83384C00B13CA7 /* Settings.swift */,
 			);
@@ -86,8 +115,8 @@
 		77D532152C79CE3D00AA894E = {
 			isa = PBXGroup;
 			children = (
-				779A5D3D2C8357A600B13CA7 /* Messages.swift */,
 				77D532202C79CE3D00AA894E /* UberSwiftUI */,
+				7748203A2C85911A002615A1 /* UberSwiftUITests */,
 				77D5321F2C79CE3D00AA894E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				77D5321E2C79CE3D00AA894E /* UberSwiftUI.app */,
+				774820392C85911A002615A1 /* UberSwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,6 +237,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		774820382C85911A002615A1 /* UberSwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7748203F2C85911A002615A1 /* Build configuration list for PBXNativeTarget "UberSwiftUITests" */;
+			buildPhases = (
+				774820352C85911A002615A1 /* Sources */,
+				774820362C85911A002615A1 /* Frameworks */,
+				774820372C85911A002615A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7748203E2C85911A002615A1 /* PBXTargetDependency */,
+			);
+			name = UberSwiftUITests;
+			productName = UberSwiftUITests;
+			productReference = 774820392C85911A002615A1 /* UberSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		77D5321D2C79CE3D00AA894E /* UberSwiftUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77D5322C2C79CE3F00AA894E /* Build configuration list for PBXNativeTarget "UberSwiftUI" */;
@@ -234,6 +282,10 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					774820382C85911A002615A1 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 77D5321D2C79CE3D00AA894E;
+					};
 					77D5321D2C79CE3D00AA894E = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -253,11 +305,19 @@
 			projectRoot = "";
 			targets = (
 				77D5321D2C79CE3D00AA894E /* UberSwiftUI */,
+				774820382C85911A002615A1 /* UberSwiftUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		774820372C85911A002615A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77D5321C2C79CE3D00AA894E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,6 +330,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		774820352C85911A002615A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7748203C2C85911A002615A1 /* UberSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77D5321A2C79CE3D00AA894E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,7 +368,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7748203E2C85911A002615A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77D5321D2C79CE3D00AA894E /* UberSwiftUI */;
+			targetProxy = 7748203D2C85911A002615A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		774820402C85911A002615A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 648U26QNYT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.UberSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UberSwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UberSwiftUI";
+			};
+			name = Debug;
+		};
+		774820412C85911A002615A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 648U26QNYT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.UberSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UberSwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UberSwiftUI";
+			};
+			name = Release;
+		};
 		77D5322A2C79CE3F00AA894E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -483,6 +595,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7748203F2C85911A002615A1 /* Build configuration list for PBXNativeTarget "UberSwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				774820402C85911A002615A1 /* Debug */,
+				774820412C85911A002615A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		77D532192C79CE3D00AA894E /* Build configuration list for PBXProject "UberSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
