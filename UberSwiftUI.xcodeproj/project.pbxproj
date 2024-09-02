@@ -11,6 +11,7 @@
 		774820322C835D0F002615A1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820312C835D0F002615A1 /* SafariView.swift */; };
 		774820342C836CC2002615A1 /* AccountTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820332C836CC1002615A1 /* AccountTabs.swift */; };
 		7748203C2C85911A002615A1 /* UberSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748203B2C85911A002615A1 /* UberSwiftUITests.swift */; };
+		774820432C859400002615A1 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820422C859400002615A1 /* Wallet.swift */; };
 		779A5D2F2C7E21B300B13CA7 /* RequestPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D2E2C7E21B300B13CA7 /* RequestPop.swift */; };
 		779A5D312C80815400B13CA7 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D302C80815400B13CA7 /* Double.swift */; };
 		779A5D332C80A9B000B13CA7 /* PickupLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D322C80A9B000B13CA7 /* PickupLocation.swift */; };
@@ -49,6 +50,7 @@
 		774820332C836CC1002615A1 /* AccountTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTabs.swift; sourceTree = "<group>"; };
 		774820392C85911A002615A1 /* UberSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7748203B2C85911A002615A1 /* UberSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberSwiftUITests.swift; sourceTree = "<group>"; };
+		774820422C859400002615A1 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		779A5D2E2C7E21B300B13CA7 /* RequestPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPop.swift; sourceTree = "<group>"; };
 		779A5D302C80815400B13CA7 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		779A5D322C80A9B000B13CA7 /* PickupLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupLocation.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				779A5D372C831EDF00B13CA7 /* Profile.swift */,
 				7748202F2C835C28002615A1 /* ManageProfile.swift */,
 				774820332C836CC1002615A1 /* AccountTabs.swift */,
+				774820422C859400002615A1 /* Wallet.swift */,
 				774820312C835D0F002615A1 /* SafariView.swift */,
 				779A5D3D2C8357A600B13CA7 /* Messages.swift */,
 				779A5D3B2C833BD600B13CA7 /* SettingsRow.swift */,
@@ -356,6 +359,7 @@
 				774820302C835C28002615A1 /* ManageProfile.swift in Sources */,
 				77D532392C7A12A300AA894E /* Home.swift in Sources */,
 				77D532222C79CE3D00AA894E /* UberSwiftUIApp.swift in Sources */,
+				774820432C859400002615A1 /* Wallet.swift in Sources */,
 				779A5D3A2C83384C00B13CA7 /* Settings.swift in Sources */,
 				779A5D3C2C833BD600B13CA7 /* SettingsRow.swift in Sources */,
 				779A5D352C831CE100B13CA7 /* AppTheme.swift in Sources */,
