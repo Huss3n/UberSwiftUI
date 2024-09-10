@@ -39,5 +39,5 @@ This project is an Uber clone built using **SwiftUI** and **Firebase**. The app 
 1. Clone the repository:
    ```bash
    git clone https://github.com/Huss3n/UberSwiftUI.git
-   cd uber-clone
+   cd UberSwiftUI
 
