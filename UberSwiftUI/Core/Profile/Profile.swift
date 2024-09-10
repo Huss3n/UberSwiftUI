@@ -12,6 +12,7 @@ struct Profile: View {
     @State var showMessages: Bool = false
     @State var showSafari: Bool = false
     @State var showManageAccount: Bool = false
+    @State var showWallet: Bool = false
     @Environment(\.dismiss) var dismiss
     
     
@@ -25,6 +26,9 @@ struct Profile: View {
                     HStack(spacing: 20) {
                         rowWidget(systemImage: "questionmark.circle.fill", widgetName: "Help")
                         rowWidget(systemImage: "wallet.pass.fill", widgetName: "Wallet")
+                            .onTapGesture {
+                                showWallet.toggle()
+                            }
                         rowWidget(systemImage: "newspaper.fill", widgetName: "Activity")
                     }
                     .padding(.vertical)
@@ -118,6 +122,9 @@ struct Profile: View {
             })
             .fullScreenCover(isPresented: $showManageAccount, content: {
                 ManageProfile(showManageAccount: $showManageAccount)
+            })
+            .fullScreenCover(isPresented: $showWallet, content: {
+                Wallet(showWallet: $showWallet)
             })
         }
         
