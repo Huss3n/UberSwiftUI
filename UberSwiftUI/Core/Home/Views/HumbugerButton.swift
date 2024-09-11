@@ -45,6 +45,7 @@ struct HumbugerButton: View {
         switch mapState {
         case .noInput:
             mapState = .profile
+            print("Mapstate is \(mapState)")
         case .locationSelected:
             mapState = .noInput
         case .searchingForLocation:
