@@ -16,6 +16,8 @@
 		7718BAA62C9192E2003D77D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAA42C9192E2003D77D3 /* UserModel.swift */; };
 		7718BAA82C9194D1003D77D3 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */; };
 		7718BAA92C9194D1003D77D3 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */; };
+		7718BAAB2C919BF9003D77D3 /* RideRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */; };
+		7718BAAC2C919BF9003D77D3 /* RideRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */; };
 		774820302C835C28002615A1 /* ManageProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748202F2C835C28002615A1 /* ManageProfile.swift */; };
 		774820322C835D0F002615A1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820312C835D0F002615A1 /* SafariView.swift */; };
 		774820342C836CC2002615A1 /* AccountTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820332C836CC1002615A1 /* AccountTabs.swift */; };
@@ -67,6 +69,7 @@
 		7718BAA12C9180A5003D77D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7718BAA42C9192E2003D77D3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestManager.swift; sourceTree = "<group>"; };
 		7748202F2C835C28002615A1 /* ManageProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfile.swift; sourceTree = "<group>"; };
 		774820312C835D0F002615A1 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		774820332C836CC1002615A1 /* AccountTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTabs.swift; sourceTree = "<group>"; };
@@ -235,6 +238,7 @@
 				77D5323C2C7A415F00AA894E /* LocationManager.swift */,
 				7718BA962C906D6D003D77D3 /* AuthManager.swift */,
 				7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */,
+				7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -420,6 +424,7 @@
 				7718BAA62C9192E2003D77D3 /* UserModel.swift in Sources */,
 				7748203C2C85911A002615A1 /* UberSwiftUITests.swift in Sources */,
 				7718BAA92C9194D1003D77D3 /* DatabaseManager.swift in Sources */,
+				7718BAAC2C919BF9003D77D3 /* RideRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +455,7 @@
 				779A5D352C831CE100B13CA7 /* AppTheme.swift in Sources */,
 				77D532492C7C76BF00AA894E /* LocationSearchVM.swift in Sources */,
 				7718BAA02C907716003D77D3 /* VerificationCodeView.swift in Sources */,
+				7718BAAB2C919BF9003D77D3 /* RideRequestManager.swift in Sources */,
 				7718BAA52C9192E2003D77D3 /* UserModel.swift in Sources */,
 				779A5D312C80815400B13CA7 /* Double.swift in Sources */,
 				779A5D332C80A9B000B13CA7 /* PickupLocation.swift in Sources */,
