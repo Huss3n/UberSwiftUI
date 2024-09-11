@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7718BA972C906D6D003D77D3 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BA962C906D6D003D77D3 /* AuthManager.swift */; };
+		7718BA9E2C9070A9003D77D3 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BA9D2C9070A9003D77D3 /* AuthVM.swift */; };
+		7718BAA02C907716003D77D3 /* VerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BA9F2C907716003D77D3 /* VerificationCodeView.swift */; };
+		7718BAA22C9180A5003D77D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7718BAA12C9180A5003D77D3 /* GoogleService-Info.plist */; };
+		7718BAA32C9180A5003D77D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7718BAA12C9180A5003D77D3 /* GoogleService-Info.plist */; };
+		7718BAA52C9192E2003D77D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAA42C9192E2003D77D3 /* UserModel.swift */; };
+		7718BAA62C9192E2003D77D3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAA42C9192E2003D77D3 /* UserModel.swift */; };
+		7718BAA82C9194D1003D77D3 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */; };
+		7718BAA92C9194D1003D77D3 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */; };
+		7718BAAB2C919BF9003D77D3 /* RideRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */; };
+		7718BAAC2C919BF9003D77D3 /* RideRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */; };
 		774820302C835C28002615A1 /* ManageProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748202F2C835C28002615A1 /* ManageProfile.swift */; };
 		774820322C835D0F002615A1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820312C835D0F002615A1 /* SafariView.swift */; };
 		774820342C836CC2002615A1 /* AccountTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820332C836CC1002615A1 /* AccountTabs.swift */; };
@@ -32,12 +43,12 @@
 		77D532472C7C6D8500AA894E /* LocationViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D532462C7C6D8500AA894E /* LocationViewComponent.swift */; };
 		77D532492C7C76BF00AA894E /* LocationSearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D532482C7C76BF00AA894E /* LocationSearchVM.swift */; };
 		77D5324B2C7C9CAF00AA894E /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D5324A2C7C9CAF00AA894E /* MapState.swift */; };
-		77E98CF72C904B8400121FE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77E98CF62C904B8400121FE1 /* GoogleService-Info.plist */; };
 		77E98D052C9051F900121FE1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 77E98D042C9051F900121FE1 /* FirebaseAuth */; };
 		77E98D072C9051F900121FE1 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 77E98D062C9051F900121FE1 /* FirebaseAuthCombine-Community */; };
 		77E98D092C9051F900121FE1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 77E98D082C9051F900121FE1 /* FirebaseFirestore */; };
 		77E98D0B2C9051F900121FE1 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 77E98D0A2C9051F900121FE1 /* FirebaseFirestoreCombine-Community */; };
 		77E98D0D2C90536300121FE1 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E98D0C2C90536300121FE1 /* AuthView.swift */; };
+		77E98D0F2C905B6300121FE1 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E98D0E2C905B6300121FE1 /* Splash.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +62,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7718BA962C906D6D003D77D3 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		7718BA9A2C906FDB003D77D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7718BA9D2C9070A9003D77D3 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
+		7718BA9F2C907716003D77D3 /* VerificationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeView.swift; sourceTree = "<group>"; };
+		7718BAA12C9180A5003D77D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7718BAA42C9192E2003D77D3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestManager.swift; sourceTree = "<group>"; };
 		7748202F2C835C28002615A1 /* ManageProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfile.swift; sourceTree = "<group>"; };
 		774820312C835D0F002615A1 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		774820332C836CC1002615A1 /* AccountTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTabs.swift; sourceTree = "<group>"; };
@@ -78,8 +97,8 @@
 		77D532462C7C6D8500AA894E /* LocationViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewComponent.swift; sourceTree = "<group>"; };
 		77D532482C7C76BF00AA894E /* LocationSearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchVM.swift; sourceTree = "<group>"; };
 		77D5324A2C7C9CAF00AA894E /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
-		77E98CF62C904B8400121FE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		77E98D0C2C90536300121FE1 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		77E98D0E2C905B6300121FE1 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +123,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7718BA9B2C907097003D77D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7718BA9F2C907716003D77D3 /* VerificationCodeView.swift */,
+				77E98D0C2C90536300121FE1 /* AuthView.swift */,
+				77E98D0E2C905B6300121FE1 /* Splash.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7718BA9C2C90709E003D77D3 /* Viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				7718BA9D2C9070A9003D77D3 /* AuthVM.swift */,
+			);
+			path = Viewmodel;
+			sourceTree = "<group>";
+		};
 		7748203A2C85911A002615A1 /* UberSwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +186,7 @@
 		77D532202C79CE3D00AA894E /* UberSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				7718BA9A2C906FDB003D77D3 /* Info.plist */,
 				77D5322F2C7A123100AA894E /* App */,
 				77D532342C7A127900AA894E /* Core */,
 				77D532302C7A123700AA894E /* Extensions */,
@@ -156,6 +194,7 @@
 				77D532322C7A124200AA894E /* Managers */,
 				77D532312C7A123D00AA894E /* Shared */,
 				77D532252C79CE3F00AA894E /* Assets.xcassets */,
+				7718BAA12C9180A5003D77D3 /* GoogleService-Info.plist */,
 				77D532272C79CE3F00AA894E /* Preview Content */,
 			);
 			path = UberSwiftUI;
@@ -164,7 +203,6 @@
 		77D532272C79CE3F00AA894E /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				77E98CF62C904B8400121FE1 /* GoogleService-Info.plist */,
 				77D532282C79CE3F00AA894E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -198,6 +236,9 @@
 			isa = PBXGroup;
 			children = (
 				77D5323C2C7A415F00AA894E /* LocationManager.swift */,
+				7718BA962C906D6D003D77D3 /* AuthManager.swift */,
+				7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */,
+				7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -206,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				779A5D322C80A9B000B13CA7 /* PickupLocation.swift */,
+				7718BAA42C9192E2003D77D3 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,7 +297,8 @@
 		77E98CF42C9049DD00121FE1 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				77E98D0C2C90536300121FE1 /* AuthView.swift */,
+				7718BA9C2C90709E003D77D3 /* Viewmodel */,
+				7718BA9B2C907097003D77D3 /* View */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -357,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7718BAA32C9180A5003D77D3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +409,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				77D532292C79CE3F00AA894E /* Preview Assets.xcassets in Resources */,
-				77E98CF72C904B8400121FE1 /* GoogleService-Info.plist in Resources */,
 				77D532262C79CE3F00AA894E /* Assets.xcassets in Resources */,
+				7718BAA22C9180A5003D77D3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +421,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7718BAA62C9192E2003D77D3 /* UserModel.swift in Sources */,
 				7748203C2C85911A002615A1 /* UberSwiftUITests.swift in Sources */,
+				7718BAA92C9194D1003D77D3 /* DatabaseManager.swift in Sources */,
+				7718BAAC2C919BF9003D77D3 /* RideRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,8 +440,10 @@
 				77D5323D2C7A415F00AA894E /* LocationManager.swift in Sources */,
 				77D532452C7C6B1100AA894E /* SearchView.swift in Sources */,
 				774820342C836CC2002615A1 /* AccountTabs.swift in Sources */,
+				7718BAA82C9194D1003D77D3 /* DatabaseManager.swift in Sources */,
 				77D5324B2C7C9CAF00AA894E /* MapState.swift in Sources */,
 				77D5323B2C7A3F4700AA894E /* UberMapView.swift in Sources */,
+				77E98D0F2C905B6300121FE1 /* Splash.swift in Sources */,
 				77D532472C7C6D8500AA894E /* LocationViewComponent.swift in Sources */,
 				774820302C835C28002615A1 /* ManageProfile.swift in Sources */,
 				77D532392C7A12A300AA894E /* Home.swift in Sources */,
@@ -402,12 +451,17 @@
 				774820432C859400002615A1 /* Wallet.swift in Sources */,
 				779A5D3A2C83384C00B13CA7 /* Settings.swift in Sources */,
 				779A5D3C2C833BD600B13CA7 /* SettingsRow.swift in Sources */,
+				7718BA9E2C9070A9003D77D3 /* AuthVM.swift in Sources */,
 				779A5D352C831CE100B13CA7 /* AppTheme.swift in Sources */,
 				77D532492C7C76BF00AA894E /* LocationSearchVM.swift in Sources */,
+				7718BAA02C907716003D77D3 /* VerificationCodeView.swift in Sources */,
+				7718BAAB2C919BF9003D77D3 /* RideRequestManager.swift in Sources */,
+				7718BAA52C9192E2003D77D3 /* UserModel.swift in Sources */,
 				779A5D312C80815400B13CA7 /* Double.swift in Sources */,
 				779A5D332C80A9B000B13CA7 /* PickupLocation.swift in Sources */,
 				77E98D0D2C90536300121FE1 /* AuthView.swift in Sources */,
 				779A5D2F2C7E21B300B13CA7 /* RequestPop.swift in Sources */,
+				7718BA972C906D6D003D77D3 /* AuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +642,7 @@
 				DEVELOPMENT_TEAM = 648U26QNYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UberSwiftUI/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app needs to use your location to find availabe drivers in your area.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -601,6 +656,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.UberSwiftUIClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -618,6 +677,7 @@
 				DEVELOPMENT_TEAM = 648U26QNYT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UberSwiftUI/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app needs to use your location to find availabe drivers in your area.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -631,6 +691,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.UberSwiftUIClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
