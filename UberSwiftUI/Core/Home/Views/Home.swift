@@ -41,6 +41,9 @@ struct Home: View {
             }
         }
         .ignoresSafeArea(edges: .bottom)
+        .onAppear {
+            print("View appeared, map state is: \(mapState)")
+        }
         .onReceive(LocationManager.shared.$userLocation, perform: { location in
             locationSearchVM.userLocation = location
         })
