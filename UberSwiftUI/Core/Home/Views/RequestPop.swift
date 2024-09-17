@@ -10,6 +10,7 @@ import SwiftUI
 struct RequestPop: View {
     @State var carSelection: CarSelection = .uberx
     @EnvironmentObject var locationSearchVM: LocationSearchVM
+    @State private var connectToDriver: Bool = false
     
     var body: some View {
         VStack(spacing: 12) {
@@ -19,111 +20,125 @@ struct RequestPop: View {
                 .frame(width: 30, height: 4)
                 .padding(.vertical, 8)
             
-            // MARK: Begin hstack
-            HStack {
-                VStack {
-                    Circle()
-                        .fill(.gray.opacity(0.6))
-                        .frame(width: 10, height: 10)
-                    
-                    Rectangle()
-                        .fill(.gray.opacity(0.7))
-                        .frame(width: 1, height: 34)
-                    
-                    Rectangle()
-                        .fill(.primary)
-                        .frame(width: 10, height: 10)
-                }
-                
-                // MARK: Location
-                VStack(alignment: .leading, spacing: 38) {
-                    Text("Current location")
-                        .foregroundStyle(.gray)
-                    
-                    Text(locationSearchVM.selectedTripLocation?.title ?? "")
-                }
-                Spacer()
-                
-                // MARK: Time
-                VStack(alignment: .leading, spacing: 38) {
-                    // pick up
-                    Text(locationSearchVM.pickupTime ?? "1:30am")
-                    
-                    // drop off
-                    Text(locationSearchVM.dropoffTime ?? "2:15pm")
-                }
-                .foregroundStyle(.gray)
-                
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
             
-            Divider()
-                .padding(.vertical, 10)
-            
-            Text("Suggested cars")
-                .font(.headline)
-                .foregroundStyle(Color(.systemGray))
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            // MARK: Begin hstack - suggested cars
-            ScrollView(.horizontal) {
-                HStack(spacing: 10) {
-                    CarType(
-                        imageName: "uberx",
-                        carSelected: .uberx,
-                        price: locationSearchVM.calculateTripAmount(for: .uberx).toCurrency(),
-                        backgroundColor: carSelection == .uberx ? .blue : Color(.systemGray5))
-                        .onTapGesture { withAnimation(.bouncy) { carSelection = .uberx } }
-                    
-                    CarType(
-                        imageName: "comfort",
-                        carSelected: .uberComfort,
-                        price: locationSearchVM.calculateTripAmount(for: .uberComfort).toCurrency(),
-                        backgroundColor: carSelection == .uberComfort ? .blue : Color(.systemGray5))
-                        .onTapGesture { withAnimation(.bouncy) { carSelection = .uberComfort} }
-                    
-                    CarType(
-                        imageName: "green",
-                        carSelected: .ubergreen,
-                        price: locationSearchVM.calculateTripAmount(for: .ubergreen).toCurrency(),
-                        backgroundColor: carSelection == .ubergreen ? .blue : Color(.systemGray5))
-                        .onTapGesture { withAnimation(.bouncy) { carSelection = .ubergreen} }
-                    
-                }
-            }
-            .scrollIndicators(.hidden)
-            
-            // MARK: Card
-            HStack {
-                Image("visa")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40, height: 40)
-                
-                Text("**** **** **** 1234")
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-            }
-            .font(.headline)
-            .padding(.horizontal)
-            .padding(.vertical, 4)
-            .background(Color(.systemGray5))
-            .cornerRadius(10)
-            
-            // MARK: Request ride
-            Button(action: {
-                
-            }, label: {
-                Text("Request \(carSelection.carName.uppercased())".uppercased())
+            if connectToDriver {
+                Text("Connecting you to a driver")
                     .font(.headline)
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 45)
-                    .background(Color(.systemBlue))
-                    .cornerRadius(10)
-            })
+                
+                LoadingCircleView()
+                
+            } else {
+                // MARK: Begin hstack
+                HStack {
+                    VStack {
+                        Circle()
+                            .fill(.gray.opacity(0.6))
+                            .frame(width: 10, height: 10)
+                        
+                        Rectangle()
+                            .fill(.gray.opacity(0.7))
+                            .frame(width: 1, height: 34)
+                        
+                        Rectangle()
+                            .fill(.primary)
+                            .frame(width: 10, height: 10)
+                    }
+                    
+                    // MARK: Location
+                    VStack(alignment: .leading, spacing: 38) {
+                        Text("Current location")
+                            .foregroundStyle(.gray)
+                        
+                        Text(locationSearchVM.selectedTripLocation?.title ?? "")
+                    }
+                    Spacer()
+                    
+                    // MARK: Time
+                    VStack(alignment: .leading, spacing: 38) {
+                        // pick up
+                        Text(locationSearchVM.pickupTime ?? "1:30am")
+                        
+                        // drop off
+                        Text(locationSearchVM.dropoffTime ?? "2:15pm")
+                    }
+                    .foregroundStyle(.gray)
+                    
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Divider()
+                    .padding(.vertical, 10)
+                
+                Text("Suggested cars")
+                    .font(.headline)
+                    .foregroundStyle(Color(.systemGray))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                // MARK: Begin hstack - suggested cars
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        CarType(
+                            imageName: "uberx",
+                            carSelected: .uberx,
+                            price: locationSearchVM.calculateTripAmount(for: .uberx).toCurrency(),
+                            backgroundColor: carSelection == .uberx ? .blue : Color(.systemGray5))
+                        .onTapGesture { withAnimation(.bouncy) { carSelection = .uberx } }
+                        
+                        CarType(
+                            imageName: "comfort",
+                            carSelected: .uberComfort,
+                            price: locationSearchVM.calculateTripAmount(for: .uberComfort).toCurrency(),
+                            backgroundColor: carSelection == .uberComfort ? .blue : Color(.systemGray5))
+                        .onTapGesture { withAnimation(.bouncy) { carSelection = .uberComfort} }
+                        
+                        CarType(
+                            imageName: "green",
+                            carSelected: .ubergreen,
+                            price: locationSearchVM.calculateTripAmount(for: .ubergreen).toCurrency(),
+                            backgroundColor: carSelection == .ubergreen ? .blue : Color(.systemGray5))
+                        .onTapGesture { withAnimation(.bouncy) { carSelection = .ubergreen} }
+                        
+                    }
+                }
+                .scrollIndicators(.hidden)
+                
+                // MARK: Card
+                HStack {
+                    Image("visa")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                    
+                    Text("**** **** **** 1234")
+                    
+                    Spacer()
+                    
+                    Image(systemName: "chevron.right")
+                }
+                .font(.headline)
+                .padding(.horizontal)
+                .padding(.vertical, 4)
+                .background(Color(.systemGray5))
+                .cornerRadius(10)
+                
+                // MARK: Request ride
+                Button(action: {
+                    connectToDriver.toggle()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        connectToDriver.toggle()
+                    }
+                }, label: {
+                    Text("Request \(carSelection.carName.uppercased())".uppercased())
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 45)
+                        .background(Color(.systemBlue))
+                        .cornerRadius(10)
+                })
+            }
+            
             
         }
         .padding(.horizontal)
@@ -136,7 +151,8 @@ struct RequestPop: View {
 
 #Preview {
     RequestPop()
-//    CarType(imageName: "comfort", carSelected: .uberComfort, backgroundColor: .red)
+        .environmentObject(LocationSearchVM())
+    //    CarType(imageName: "comfort", carSelected: .uberComfort, backgroundColor: .red)
 }
 
 
@@ -145,7 +161,7 @@ struct CarType: View {
     var carSelected: CarSelection
     var price: String
     var backgroundColor: Color
-
+    
     
     var body: some View {
         VStack(alignment: .leading) {

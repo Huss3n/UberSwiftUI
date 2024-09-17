@@ -25,6 +25,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if Auth.auth().canHandleNotification(userInfo) {
             completionHandler(.noData)
             return
+            
+            
         }
         completionHandler(.newData)
     }
@@ -46,12 +48,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct UberSwiftUIApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-   
+    @StateObject var locationSearchVM = LocationSearchVM()
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                Splash()
+                Home()
+                    .environmentObject(locationSearchVM)
             }
         }
     }

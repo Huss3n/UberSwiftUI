@@ -13,7 +13,8 @@ struct UserModel {
     let userID: String
     let name: String
     let coordinates: CLLocationCoordinate2D
-    let isDriver: Bool = false
+    let isDriver: Bool? = false
 }
 
 
+ 
