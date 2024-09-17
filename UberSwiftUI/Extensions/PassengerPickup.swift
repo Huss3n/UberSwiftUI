@@ -11,16 +11,15 @@ import CoreLocation
 
 struct PassengerPickup: View {
     let passengerName: String
-    let pickupLocation: CLLocationCoordinate2D
+    let pickupLocation: PickupLocation
     
     // Create a state for the map region
     @State private var region: MKCoordinateRegion
     
     init(passengerName: String, pickupLocation: CLLocationCoordinate2D) {
         self.passengerName = passengerName
-        self.pickupLocation = pickupLocation
-        
-        // Initialize the map region centered around the passenger's location
+        self.pickupLocation = PickupLocation(coordinate: pickupLocation)
+    
         _region = State(initialValue: MKCoordinateRegion(
             center: pickupLocation,
             span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
@@ -80,8 +79,6 @@ struct PassengerPickup: View {
                     Text("Ksh 450")
                         .font(.headline)
                 }
-                
-                
             }
             
             Divider()
@@ -94,7 +91,7 @@ struct PassengerPickup: View {
             
             // Map showing the passenger's location
             Map(coordinateRegion: $region, annotationItems: [pickupLocation]) { location in
-                MapMarker(coordinate: location, tint: .blue)
+                MapMarker(coordinate: location.coordinate, tint: .blue)
             }
             .frame(height: 200)
             .cornerRadius(10)
@@ -131,6 +128,12 @@ struct PassengerPickup: View {
 #Preview {
     PassengerPickup(
          passengerName: "Hussein Aisak",
-         pickupLocation: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194) // Example coordinates
+         pickupLocation: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
      )
+}
+
+
+struct PickupLocation: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
 }
