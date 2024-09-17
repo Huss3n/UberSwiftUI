@@ -28,4 +28,8 @@ final class AuthManager {
           let authResult = try await Auth.auth().signIn(with: credential)
           return authResult
       }
+    
+    func getCurrentUserID() -> String? {
+        Auth.auth().currentUser?.uid
+    }
 }
