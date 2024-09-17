@@ -18,6 +18,11 @@
 		7718BAA92C9194D1003D77D3 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */; };
 		7718BAAB2C919BF9003D77D3 /* RideRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */; };
 		7718BAAC2C919BF9003D77D3 /* RideRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */; };
+		7718BAB22C982BF4003D77D3 /* DriverSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAB12C982BF4003D77D3 /* DriverSignUp.swift */; };
+		7718BAB52C983478003D77D3 /* DriverProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAB42C983478003D77D3 /* DriverProfile.swift */; };
+		7718BABA2C9835B3003D77D3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BAB92C9835B3003D77D3 /* ProfileViewModel.swift */; };
+		7718BABC2C9848E2003D77D3 /* PassengerPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BABB2C9848E2003D77D3 /* PassengerPickup.swift */; };
+		7718BABE2C985123003D77D3 /* LoadingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BABD2C985123003D77D3 /* LoadingCircleView.swift */; };
 		774820302C835C28002615A1 /* ManageProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748202F2C835C28002615A1 /* ManageProfile.swift */; };
 		774820322C835D0F002615A1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820312C835D0F002615A1 /* SafariView.swift */; };
 		774820342C836CC2002615A1 /* AccountTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820332C836CC1002615A1 /* AccountTabs.swift */; };
@@ -70,6 +75,11 @@
 		7718BAA42C9192E2003D77D3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestManager.swift; sourceTree = "<group>"; };
+		7718BAB12C982BF4003D77D3 /* DriverSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverSignUp.swift; sourceTree = "<group>"; };
+		7718BAB42C983478003D77D3 /* DriverProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfile.swift; sourceTree = "<group>"; };
+		7718BAB92C9835B3003D77D3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		7718BABB2C9848E2003D77D3 /* PassengerPickup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerPickup.swift; sourceTree = "<group>"; };
+		7718BABD2C985123003D77D3 /* LoadingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCircleView.swift; sourceTree = "<group>"; };
 		7748202F2C835C28002615A1 /* ManageProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfile.swift; sourceTree = "<group>"; };
 		774820312C835D0F002615A1 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		774820332C836CC1002615A1 /* AccountTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTabs.swift; sourceTree = "<group>"; };
@@ -141,6 +151,30 @@
 			path = Viewmodel;
 			sourceTree = "<group>";
 		};
+		7718BAB72C9834ED003D77D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				779A5D372C831EDF00B13CA7 /* Profile.swift */,
+				7718BAB42C983478003D77D3 /* DriverProfile.swift */,
+				7748202F2C835C28002615A1 /* ManageProfile.swift */,
+				774820332C836CC1002615A1 /* AccountTabs.swift */,
+				774820422C859400002615A1 /* Wallet.swift */,
+				774820312C835D0F002615A1 /* SafariView.swift */,
+				779A5D3D2C8357A600B13CA7 /* Messages.swift */,
+				779A5D3B2C833BD600B13CA7 /* SettingsRow.swift */,
+				779A5D392C83384C00B13CA7 /* Settings.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7718BAB82C983512003D77D3 /* Viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				7718BAB92C9835B3003D77D3 /* ProfileViewModel.swift */,
+			);
+			path = Viewmodel;
+			sourceTree = "<group>";
+		};
 		7748203A2C85911A002615A1 /* UberSwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,14 +186,8 @@
 		779A5D362C831ED000B13CA7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				779A5D372C831EDF00B13CA7 /* Profile.swift */,
-				7748202F2C835C28002615A1 /* ManageProfile.swift */,
-				774820332C836CC1002615A1 /* AccountTabs.swift */,
-				774820422C859400002615A1 /* Wallet.swift */,
-				774820312C835D0F002615A1 /* SafariView.swift */,
-				779A5D3D2C8357A600B13CA7 /* Messages.swift */,
-				779A5D3B2C833BD600B13CA7 /* SettingsRow.swift */,
-				779A5D392C83384C00B13CA7 /* Settings.swift */,
+				7718BAB82C983512003D77D3 /* Viewmodel */,
+				7718BAB72C9834ED003D77D3 /* View */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -219,8 +247,10 @@
 		77D532302C7A123700AA894E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7718BAB12C982BF4003D77D3 /* DriverSignUp.swift */,
 				779A5D302C80815400B13CA7 /* Double.swift */,
 				779A5D342C831CE000B13CA7 /* AppTheme.swift */,
+				7718BABB2C9848E2003D77D3 /* PassengerPickup.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +311,7 @@
 				77D5323A2C7A3F4700AA894E /* UberMapView.swift */,
 				77D532402C7A488F00AA894E /* LocationSearchView.swift */,
 				779A5D2E2C7E21B300B13CA7 /* RequestPop.swift */,
+				7718BABD2C985123003D77D3 /* LoadingCircleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -432,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7718BABC2C9848E2003D77D3 /* PassengerPickup.swift in Sources */,
 				77D532432C7C69D700AA894E /* HumbugerButton.swift in Sources */,
 				779A5D3E2C8357A600B13CA7 /* Messages.swift in Sources */,
 				779A5D382C831EDF00B13CA7 /* Profile.swift in Sources */,
@@ -442,12 +474,15 @@
 				774820342C836CC2002615A1 /* AccountTabs.swift in Sources */,
 				7718BAA82C9194D1003D77D3 /* DatabaseManager.swift in Sources */,
 				77D5324B2C7C9CAF00AA894E /* MapState.swift in Sources */,
+				7718BAB22C982BF4003D77D3 /* DriverSignUp.swift in Sources */,
+				7718BAB52C983478003D77D3 /* DriverProfile.swift in Sources */,
 				77D5323B2C7A3F4700AA894E /* UberMapView.swift in Sources */,
 				77E98D0F2C905B6300121FE1 /* Splash.swift in Sources */,
 				77D532472C7C6D8500AA894E /* LocationViewComponent.swift in Sources */,
 				774820302C835C28002615A1 /* ManageProfile.swift in Sources */,
 				77D532392C7A12A300AA894E /* Home.swift in Sources */,
 				77D532222C79CE3D00AA894E /* UberSwiftUIApp.swift in Sources */,
+				7718BABA2C9835B3003D77D3 /* ProfileViewModel.swift in Sources */,
 				774820432C859400002615A1 /* Wallet.swift in Sources */,
 				779A5D3A2C83384C00B13CA7 /* Settings.swift in Sources */,
 				779A5D3C2C833BD600B13CA7 /* SettingsRow.swift in Sources */,
@@ -460,6 +495,7 @@
 				779A5D312C80815400B13CA7 /* Double.swift in Sources */,
 				779A5D332C80A9B000B13CA7 /* PickupLocation.swift in Sources */,
 				77E98D0D2C90536300121FE1 /* AuthView.swift in Sources */,
+				7718BABE2C985123003D77D3 /* LoadingCircleView.swift in Sources */,
 				779A5D2F2C7E21B300B13CA7 /* RequestPop.swift in Sources */,
 				7718BA972C906D6D003D77D3 /* AuthManager.swift in Sources */,
 			);
