@@ -12,6 +12,9 @@ final class AuthVM: ObservableObject {
     let authManager = AuthManager.shared
     @Published var phoneNumber: String = ""
     @Published var verificationID: String?
+    @Published var userModel: UserModel?
+    
+    var userID: String = ""
     
     func verifyPhoneNumber(fullPhoneNumber: String, completion: @escaping (Bool) -> Void) async {
           // Ensure the phone number is in E.164 format
@@ -42,12 +45,22 @@ final class AuthVM: ObservableObject {
         }
         
         let authResult = try await authManager.signInWithVerificationCode(verificationID: verificationID, verificationCode: verificationCode)
-        let userID = authResult.user.uid
+        self.userID = authResult.user.uid
+        
         guard let userLocation = LocationManager.shared.userLocation else { return }
         let userModel = UserModel(userID: userID, name: "Hussein Aisak", coordinates: userLocation)
         await DatabaseManager.shared.saveUserToDatabase(userModel: userModel)
         print("User signed in: \(authResult.user.uid)")
         completion(true)
+    }
+    
+    func fetchUser() async {
+        do {
+            let usermodel = try await DatabaseManager.shared.fetchUserFromDatabase(for: userID)
+            print("usermodel from on apeear in auth vm \(usermodel)")
+        } catch {
+            print("Error fetching user data")
+        }
     }
     
     private func formatPhoneNumber(_ phoneNumber: String) -> String {
