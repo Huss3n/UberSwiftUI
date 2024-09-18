@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Profile: View {
-    @StateObject private var profileVM = ProfileViewModel()
+    @ObservedObject var profileVM: HomeViewModel
     @State var showSettings: Bool = false
     @State var showMessages: Bool = false
     @State var showSafari: Bool = false
@@ -173,7 +173,7 @@ struct Profile: View {
 }
 
 #Preview {
-    Profile()
+    Profile(profileVM: HomeViewModel())
 }
 
 extension Profile {
