@@ -53,4 +53,45 @@ final class RideRequestManager: ObservableObject {
                 completion(closestDriverID)
             }
     }
+    
+    // Create a ride request by passing UserModel
+    func createRideRequest(passenger: UserModel, destinationLocation: CLLocationCoordinate2D, completion: @escaping (Bool) -> Void) {
+        findClosestDriver(userLocation: passenger.coordinates) { driverID in
+            guard let driverID = driverID else {
+                print("No driver available")
+                completion(false)
+                return
+            }
+            
+            let rideRequest = [
+                "passengerID": passenger.userID,
+                "passengerName": passenger.name,
+                "pickupCoordinates": [
+                    "latitude": passenger.coordinates.latitude,
+                    "longitude": passenger.coordinates.longitude
+                ],
+                "destinationCoordinates": [
+                    "latitude": destinationLocation.latitude,
+                    "longitude": destinationLocation.longitude
+                ],
+                "fareEstimate": 500, // Example fare
+                "requestTime": Date(),
+                "driverID": driverID,
+                "status": "pending"
+            ] as [String : Any]
+            
+            self.db.collection("rideRequests").addDocument(data: rideRequest) { error in
+                if let error = error {
+                    print("Error creating ride request: \(error.localizedDescription)")
+                    completion(false)
+                } else {
+                    print("Ride request sent to driver with ID: \(driverID)")
+                    completion(true)
+                }
+            }
+            
+        }
+    }
 }
+
+

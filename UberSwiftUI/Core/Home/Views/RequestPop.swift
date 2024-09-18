@@ -12,6 +12,8 @@ struct RequestPop: View {
     @EnvironmentObject var locationSearchVM: LocationSearchVM
     @State private var connectToDriver: Bool = false
     
+    var requestButtonPressed: () -> Void
+    
     var body: some View {
         VStack(spacing: 12) {
             
@@ -127,6 +129,7 @@ struct RequestPop: View {
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         connectToDriver.toggle()
+                        requestButtonPressed()
                     }
                 }, label: {
                     Text("Request \(carSelection.carName.uppercased())".uppercased())
@@ -150,7 +153,7 @@ struct RequestPop: View {
 
 
 #Preview {
-    RequestPop()
+    RequestPop(requestButtonPressed: {})
         .environmentObject(LocationSearchVM())
     //    CarType(imageName: "comfort", carSelected: .uberComfort, backgroundColor: .red)
 }
