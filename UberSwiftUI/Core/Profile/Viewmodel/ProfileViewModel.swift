@@ -15,9 +15,8 @@ final class ProfileViewModel: ObservableObject {
             await fetchUserData()
         }
     }
-
     
-    private func fetchUserData() async {
+    func fetchUserData() async {
         guard let uid = AuthManager.shared.getCurrentUserID() else { return }
         
         do {

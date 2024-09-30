@@ -53,6 +53,7 @@ struct UberSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
+//                Splash() 
                 Home()
                     .environmentObject(locationSearchVM)
             }

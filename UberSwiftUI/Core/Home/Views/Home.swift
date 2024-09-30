@@ -6,39 +6,6 @@
 //
 
 import SwiftUI
-import CoreLocation
-
-final class HomeViewModel: ObservableObject {
-    @Published var userModel: UserModel?  = nil
-    
-    init() {
-        Task {
-            await fetchUserData()
-        }
-    }
-
-    
-    private func fetchUserData() async {
-        guard let uid = AuthManager.shared.getCurrentUserID() else { return }
-        
-        do {
-            let usermodel = try await DatabaseManager.shared.fetchUserFromDatabase(for: uid)
-            
-            await MainActor.run {
-                self.userModel = usermodel
-                print("Usermodel \(userModel)")
-            }
-        } catch {
-            print("Error fetcing user data \(error.localizedDescription)")
-        }
-    }
-    
-    // fetch the user who is requesting the ride details: - name and coordinates
-    func fetchPassengerDetails(for passengerID: String) -> UserModel {
-        return UserModel(userID: "", name: "Hussein AISAK", coordinates: CLLocationCoordinate2D(latitude: 40.7127, longitude: -74.0059))
-    }
-    
-}
 
 struct Home: View {
     @StateObject var homeViewModel = HomeViewModel()
@@ -46,51 +13,84 @@ struct Home: View {
     @EnvironmentObject var locationSearchVM: LocationSearchVM
     @State private var showProfileView: Bool = false
     
+    @State private var driverDetails: UserModel?
+    @State private var connectToDriver: Bool = false
+    
+    @State var uid: String?
+    @State var passengerDetails: UserModel?
+    
+    //    @State var showPassengerPickUp: Bool = false
+    @State private var rideRequestID: String?
+    
+    // This state will store whether the map should update or not
+    @State private var shouldUpdateMap = false
+    
+    var ridereq = RideRequestManager.shared
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             
             ZStack(alignment: .top) {
+                
+                // Conditionally update the UberMapView only when shouldUpdateMap is true
                 UberMapView(mapState: $mapState)
                     .ignoresSafeArea()
-                
-                if let userIsDriver = homeViewModel.userModel?.isDriver {
-                    let passenger = homeViewModel.fetchPassengerDetails(for: "123")
-                    PassengerPickup(passengerName: passenger.name, pickupLocation: passenger.coordinates)
-                    
-                } else {
-                    if mapState == .searchingForLocation {
-                        SearchView(mapState: $mapState)
-                        
-                    } else if mapState == .noInput {
-                        LocationSearchView()
-                            .padding(.top, 64)
-                            .onTapGesture {
-                                withAnimation(.spring) {
-                                    mapState = .searchingForLocation
-                                }
-                            }
+                    .onAppear {
+                        // Trigger map update only when a location is selected
+                        shouldUpdateMap = mapState == .locationSelected
                     }
+                
+                
+                if mapState == .searchingForLocation {
+                    SearchView(mapState: $mapState)
+                    
+                } else if mapState == .noInput {
+                    LocationSearchView()
+                        .padding(.top, 64)
+                        .onTapGesture {
+                            withAnimation(.spring) {
+                                mapState = .searchingForLocation
+                            }
+                        }
                 }
                 
                 HumbugerButton(mapState: $mapState)
             }
             
             if mapState == .locationSelected {
-                RequestPop(requestButtonPressed: {
-                    // call the function to request the ride
-                    // this function needs to send a request to the available drivers
-                    // so the func needs to have the uid of the currently logged in user
-                    // using this uid, we will fetch the coordinates of the this passenger on the drivers end
-                    // then populate the map with the details of the passenger
-                }) // here there is a button where the user can request a ride
-                    .transition(.move(edge: .bottom))
-                    .zIndex(1)  
+                RequestPop(connectToDriver: $connectToDriver, requestButtonPressed: { passengerModel, destinationLocation in
+                    
+                    print("Passenger model \(passengerModel)")
+                    
+                    // start loading
+                    connectToDriver = true
+                    self.passengerDetails = passengerModel
+                    print("DEBUG: Received passenger details at request pop closuer in the home view as: \(String(describing: passengerDetails))")
+                    
+                    Task {
+                        try await RideRequestManager.shared.createRideRequest(passenger: passengerModel, destinationLocation: destinationLocation) { rideRequestID in
+                            guard let rideRequestUID = rideRequestID else { return }
+                            
+                            // listen for driver acceptance
+                            RideRequestManager.shared.listenForDriverAcceptance(rideRequestID: rideRequestUID) { accepted, driver in
+                                if accepted, let driver = driver {
+                                    // stop the loading animation
+                                    connectToDriver = false
+                                    if let isDriver = homeViewModel.userModel?.isDriver {
+                                        homeViewModel.showPassengerPickUp.toggle()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                })
+                .transition(.move(edge: .bottom))
+                .zIndex(1)
             }
         }
         .ignoresSafeArea(edges: .bottom)
-        .onAppear {
-            print("View appeared, map state is: \(mapState)")
-        }
         .onReceive(LocationManager.shared.$userLocation, perform: { location in
             locationSearchVM.userLocation = location
         })
@@ -106,6 +106,10 @@ struct Home: View {
                     mapState = .noInput
                 }
         })
+        .sheet(isPresented: $homeViewModel.showPassengerPickUp) {
+            PassengerPickup(passengerID: "o0BaNGIsfwa6IVmHYwNKO0L7n362")
+                .presentationDetents([.medium])
+        }
     }
 }
 
