@@ -48,8 +48,19 @@ final class AuthVM: ObservableObject {
         self.userID = authResult.user.uid
         
         guard let userLocation = LocationManager.shared.userLocation else { return }
-        let userModel = UserModel(userID: userID, name: "Hussein Aisak", coordinates: userLocation)
-        await DatabaseManager.shared.saveUserToDatabase(userModel: userModel)
+        let userModel = UserModel(userID: userID, name: "Hussein Aisak", coordinates: userLocation, isDriver: false, isRideSent: false)
+        
+        // Check if the user already exists in the database before saving
+        do {
+            let userExists = try await DatabaseManager.shared.doesUserExist(userID: userModel.userID)
+            if !userExists {
+                await DatabaseManager.shared.saveUserToDatabase(userModel: userModel)
+            } else {
+                print("User already exists, skipping save.")
+            }
+        } catch {
+            print("Error checking if user exists: \(error.localizedDescription)")
+        }
         print("User signed in: \(authResult.user.uid)")
         completion(true)
     }

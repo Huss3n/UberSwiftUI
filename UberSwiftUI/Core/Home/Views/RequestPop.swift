@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct RequestPop: View {
     @State var carSelection: CarSelection = .uberx
     @EnvironmentObject var locationSearchVM: LocationSearchVM
-    @State private var connectToDriver: Bool = false
+    @Binding var connectToDriver: Bool
     
-    var requestButtonPressed: () -> Void
+    var requestButtonPressed: (_ passengerModel: UserModel, _ destinationLocation: CLLocationCoordinate2D) -> Void
     
     var body: some View {
         VStack(spacing: 12) {
@@ -24,11 +25,7 @@ struct RequestPop: View {
             
             
             if connectToDriver {
-                Text("Connecting you to a driver")
-                    .font(.headline)
-                
-                LoadingCircleView()
-                
+                LoadingDriverView()
             } else {
                 // MARK: Begin hstack
                 HStack {
@@ -125,12 +122,19 @@ struct RequestPop: View {
                 
                 // MARK: Request ride
                 Button(action: {
-                    connectToDriver.toggle()
+                    connectToDriver = true
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        connectToDriver.toggle()
-                        requestButtonPressed()
+                    Task {
+                        // get the current user id
+                        guard let userUID = AuthManager.shared.getCurrentUserID() else { return }
+                        guard let usermodel = try await DatabaseManager.shared.fetchUserFromDatabase(for: userUID) else { return }
+                        guard let dropOffLocation = locationSearchVM.selectedTripLocation?.coordinate else { return }
+                        print("passengerDetails: \(usermodel)")
+                        print("Drop off location \(dropOffLocation)")
+                        requestButtonPressed(usermodel, dropOffLocation)
                     }
+                 
+                    
                 }, label: {
                     Text("Request \(carSelection.carName.uppercased())".uppercased())
                         .font(.headline)
@@ -153,7 +157,7 @@ struct RequestPop: View {
 
 
 #Preview {
-    RequestPop(requestButtonPressed: {})
+    RequestPop(connectToDriver: .constant(true), requestButtonPressed: {passenger,destinationLocation in })
         .environmentObject(LocationSearchVM())
     //    CarType(imageName: "comfort", carSelected: .uberComfort, backgroundColor: .red)
 }
@@ -217,4 +221,16 @@ enum CarSelection {
         }
     }
     
+}
+
+struct LoadingDriverView: View {
+    var body: some View {
+        VStack {
+            Text("Connecting you to a driver")
+                .font(.headline)
+            
+            LoadingCircleView()
+        }
+        .frame(maxWidth: .infinity)
+    }
 }
