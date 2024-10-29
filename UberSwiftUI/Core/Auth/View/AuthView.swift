@@ -135,8 +135,6 @@ struct AuthView: View {
         }
       
     }
-
-    
     
     private func continueWith(systemImage: String, name: String, imageName: String? = nil) -> some View {
         HStack {

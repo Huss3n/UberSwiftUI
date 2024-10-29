@@ -140,7 +140,7 @@ struct Profile: View {
             }
             .refreshable {
                 Task {
-                    await profileVM.fetchUserData()
+//                    await profileVM.fetchUserData()
                 }
             }
             .onAppear {

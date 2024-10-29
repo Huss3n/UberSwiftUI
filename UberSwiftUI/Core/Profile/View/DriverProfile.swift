@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+import FirebaseFirestore
+import FirebaseFirestoreCombineSwift
 
 final class DriverViewModel: ObservableObject {
     @Published var driverData: UserModel?
@@ -29,13 +30,33 @@ final class DriverViewModel: ObservableObject {
             print("Error getting driver data: \(error.localizedDescription)")
         }
     }
+    
+    
+    func cancelTrip() async {
+        let db = Firestore.firestore()
+        do {
+            let docRef = db.collection("users").document("VbbNg4JpeBhiqYfmecER9PJRKan2")
+            try await docRef.updateData(
+                [
+                    "isRideAccepted": false,
+                    "routeToPassenger": ShouldClearMap.driver.stringValue,
+                    "cancelledTrip": false
+                ]
+            )
+        } catch {
+            print("Error updating ride acceptance in cancel trip function: \(error.localizedDescription)")
+        }
+    }
 }
 
 struct DriverProfile: View {
     @StateObject private var viewModel: DriverViewModel
     
-    init(driverID: String) {
+    @Binding var connectToDriver: Bool
+    
+    init(driverID: String, connectToDriver: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: DriverViewModel(driverID: driverID))
+        self._connectToDriver = connectToDriver
     }
     
     var body: some View {
@@ -48,8 +69,14 @@ struct DriverProfile: View {
             
             
             HStack(alignment: .top, spacing: 12) {
-                Text("Meet your driver at Artcaffe, Kileleshwa")
-                    .font(.headline)
+                VStack(alignment: .leading) {
+                    Text("Meet your driver at Artcaffe,")
+                        .font(.headline)
+                    
+                    Text("Kileleshwa")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
                 
                 Spacer()
                 
@@ -59,9 +86,9 @@ struct DriverProfile: View {
                 }
                 .foregroundColor(.white)
                 .font(.headline)
-                .padding(10)
+                .padding(8)
                 .background(Color.blue)
-                .cornerRadius(10)
+                .cornerRadius(7)
             }
             
             Divider()
@@ -103,7 +130,10 @@ struct DriverProfile: View {
             }
             
             Button(action: {
-                // Handle cancel action
+                Task {
+                    connectToDriver = false
+                    await viewModel.cancelTrip()
+                }
             }) {
                 Text("CANCEL TRIP")
                     .font(.headline)
@@ -120,5 +150,5 @@ struct DriverProfile: View {
 }
 
 #Preview {
-    DriverProfile(driverID: "AbTIK4LfcOe21ho8e7XcMRupiH82")
+    DriverProfile(driverID: "AbTIK4LfcOe21ho8e7XcMRupiH82", connectToDriver: .constant(true))
 }

@@ -13,7 +13,7 @@ struct RequestPop: View {
     @EnvironmentObject var locationSearchVM: LocationSearchVM
     @Binding var connectToDriver: Bool
     
-    var requestButtonPressed: (_ passengerModel: UserModel, _ destinationLocation: CLLocationCoordinate2D) -> Void
+    var requestButtonPressed: (_ passengerModel: UserModel, _ destinationLocation: DestinationLocation) -> Void
     
     var body: some View {
         VStack(spacing: 12) {
@@ -128,10 +128,14 @@ struct RequestPop: View {
                         // get the current user id
                         guard let userUID = AuthManager.shared.getCurrentUserID() else { return }
                         guard let usermodel = try await DatabaseManager.shared.fetchUserFromDatabase(for: userUID) else { return }
-                        guard let dropOffLocation = locationSearchVM.selectedTripLocation?.coordinate else { return }
+                        guard let name = locationSearchVM.selectedTripLocation?.title else { return }
+                        guard let dropOffLocationLatitude =  locationSearchVM.selectedTripLocation?.coordinate.latitude else { return }
+                        guard let dropOffLocationLongitude =  locationSearchVM.selectedTripLocation?.coordinate.longitude else { return }
+                        let dropOffCoordinates = CLLocationCoordinate2D(latitude: dropOffLocationLatitude, longitude: dropOffLocationLongitude)
+                        let destinationLocation = DestinationLocation(name: name, coordinate: dropOffCoordinates)
                         print("passengerDetails: \(usermodel)")
-                        print("Drop off location \(dropOffLocation)")
-                        requestButtonPressed(usermodel, dropOffLocation)
+                        print("Drop off location \(destinationLocation)")
+                        requestButtonPressed(usermodel, destinationLocation)
                     }
                  
                     
@@ -234,3 +238,6 @@ struct LoadingDriverView: View {
         .frame(maxWidth: .infinity)
     }
 }
+
+
+

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct Home: View {
     @StateObject var homeViewModel = HomeViewModel()
@@ -16,6 +17,7 @@ struct Home: View {
     @State private var driverDetails: UserModel?
     @State private var connectToDriver: Bool = false
     
+    
     @State var uid: String?
     @State var passengerDetails: UserModel?
     
@@ -25,6 +27,7 @@ struct Home: View {
     // This state will store whether the map should update or not
     @State private var shouldUpdateMap = false
     
+    
     var ridereq = RideRequestManager.shared
     
     var body: some View {
@@ -32,7 +35,6 @@ struct Home: View {
             
             ZStack(alignment: .top) {
                 
-                // Conditionally update the UberMapView only when shouldUpdateMap is true
                 UberMapView(mapState: $mapState)
                     .ignoresSafeArea()
                     .onAppear {
@@ -43,7 +45,6 @@ struct Home: View {
                 
                 if mapState == .searchingForLocation {
                     SearchView(mapState: $mapState)
-                    
                 } else if mapState == .noInput {
                     LocationSearchView()
                         .padding(.top, 64)
@@ -54,37 +55,24 @@ struct Home: View {
                         }
                 }
                 
-                HumbugerButton(mapState: $mapState)
+                HumbugerButton(mapState: $mapState, connectToDriver: $connectToDriver)
             }
             
             if mapState == .locationSelected {
                 RequestPop(connectToDriver: $connectToDriver, requestButtonPressed: { passengerModel, destinationLocation in
-                    
-                    print("Passenger model \(passengerModel)")
-                    
-                    // start loading
+                    // Start loading
                     connectToDriver = true
                     self.passengerDetails = passengerModel
-                    print("DEBUG: Received passenger details at request pop closuer in the home view as: \(String(describing: passengerDetails))")
+                    print("DEBUG: connectToDriver is now \(connectToDriver)")
+                    print("DEBUG: Received passenger details at request pop closure in the home view as: \(String(describing: passengerDetails))")
                     
                     Task {
                         try await RideRequestManager.shared.createRideRequest(passenger: passengerModel, destinationLocation: destinationLocation) { rideRequestID in
                             guard let rideRequestUID = rideRequestID else { return }
-                            
-                            // listen for driver acceptance
-                            RideRequestManager.shared.listenForDriverAcceptance(rideRequestID: rideRequestUID) { accepted, driver in
-                                if accepted, let driver = driver {
-                                    // stop the loading animation
-                                    connectToDriver = false
-                                    if let isDriver = homeViewModel.userModel?.isDriver {
-                                        homeViewModel.showPassengerPickUp.toggle()
-                                    }
-                                }
-                            }
+                            self.rideRequestID = rideRequestUID
+                            print("DEBUG: Ride request created with ID: \(rideRequestUID)")
                         }
                     }
-                    
-                    
                 })
                 .transition(.move(edge: .bottom))
                 .zIndex(1)
@@ -95,7 +83,9 @@ struct Home: View {
             locationSearchVM.userLocation = location
         })
         .onChange(of: mapState) {
-            if mapState == .profile {
+            if mapState == .noInput {
+                connectToDriver = false
+            } else if mapState == .profile {
                 showProfileView.toggle()
             }
         }
@@ -106,9 +96,46 @@ struct Home: View {
                     mapState = .noInput
                 }
         })
-        .sheet(isPresented: $homeViewModel.showPassengerPickUp) {
-            PassengerPickup(passengerID: "o0BaNGIsfwa6IVmHYwNKO0L7n362")
+        .sheet(
+            isPresented: Binding(
+                get: { homeViewModel.showPassengerPickUp && homeViewModel.isDriver },
+                set: { homeViewModel.showPassengerPickUp = $0 }
+            )
+        ) {
+            // ydN7t8p9VgPiHvDYf5XCRmLda773
+            PassengerPickup(passengerID: "HxPVVW8F5KX0z1VYGWuq81AZa9r1")
                 .presentationDetents([.medium])
+                .onAppear {
+                    print("Passenger pick up appeared")
+                }
+        }
+        .sheet(
+            isPresented: Binding(
+                get: { homeViewModel.showDriverDetails && !homeViewModel.isDriver },
+                set: { homeViewModel.showDriverDetails = $0 }
+            )
+        ) {
+            // o0BaNGIsfwa6IVmHYwNKO0L7n362
+            DriverProfile(driverID: "VbbNg4JpeBhiqYfmecER9PJRKan2", connectToDriver: $connectToDriver)
+                .presentationDetents([.fraction(0.35)])
+        }
+        .onChange(of: homeViewModel.rideStatus) { newStatus in
+            if newStatus == .accepted {
+                print("Driver is assigned")
+                driverDetails = homeViewModel.driverDetails // Show driver details
+                // Post a notification to inform the Home view
+                NotificationCenter.default.post(name: Notification.Name("RideAccepted"), object: nil)
+                
+            } else if newStatus == .rejected {
+                // Handle rejection, reset UI or show a message
+                mapState = .noInput
+            }
+        }
+        .onAppear {
+            NotificationCenter.default.addObserver(forName: Notification.Name("RideAccepted"), object: nil, queue: .main) { _ in
+                // Handle the ride acceptance event
+                mapState = .noInput // Dismiss the sheet by setting the state back to `noInput`
+            }
         }
     }
 }
@@ -117,3 +144,9 @@ struct Home: View {
 //#Preview {
 //    Home()
 //}
+
+
+
+extension Home {
+    
+}

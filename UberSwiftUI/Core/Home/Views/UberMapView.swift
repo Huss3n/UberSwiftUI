@@ -7,36 +7,80 @@
 
 import SwiftUI
 import MapKit
+import Combine
 
 struct UberMapView: UIViewRepresentable {
     let mapView = MKMapView()
     let locationManager = LocationManager.shared
     @Binding var mapState: MapState
     @EnvironmentObject var locationSearchVM: LocationSearchVM
-   
-   
+    
+    let driverID: String = "VbbNg4JpeBhiqYfmecER9PJRKan2"
+    
+    
+    var cancellables = Set<AnyCancellable>()
+    
+    
+    func isDriver() -> Bool {
+        guard let userID = AuthManager.shared.getCurrentUserID() else { return false }
+        print("Value of the userID is \(userID)")
+        return userID == driverID
+    }
+    
+    
     // makes the map view
     func makeUIView(context: Context) -> some UIView {
         mapView.delegate = context.coordinator
         mapView.isRotateEnabled = false
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+        
+        // pass the MKMapView instance to the LocationSearchVM
+        locationSearchVM.mapView = mapView
         return mapView
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
+        if isDriver() {
+            // Check if routeToPassenger is available
+            guard let value = DatabaseManager.shared.routeToPassenger else { return }
+            print("Value of route to passenger is \(value)")
+
+            if value == .passenger {
+                // If true, draw the route if it's not already drawn
+                if !context.coordinator.isRouteDrawn {
+                    updateDriverMap(context: context)
+                }
+            } else if value == .driver {
+                // If false, clear the map route to passenger
+                context.coordinator.clearRouteToPassenger()
+            }
+        } else {
+            updateUserMap(context: context)
+        }
+    }
+
+    
+    func updateDriverMap(context: Context) {
+        // Handle map behavior for the driver (e.g., showing route to the passenger)
+        print("DEBUG: Showing map for the driver")
+        context.coordinator.drawRouteFromDriverToPassenger()
+    }
+    
+    func updateUserMap(context: Context) {
+        // Handle map behavior for the user (e.g., showing route to the destination)
+        print("DEBUG: Showing map for the user")
         switch mapState {
         case .noInput:
             context.coordinator.clearRoutesAndRecenteruser()
-            break
         case .locationSelected:
             break
         case .searchingForLocation:
-            if let coordinate = locationSearchVM.selectedTripLocation {
-                print("Coordinate is available in update UI \(coordinate)")
-                print("DEBUG: Called everytime")
-                context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate.coordinate)
-                context.coordinator.drawRouteToDestination(to: coordinate.coordinate)
+            if let destinationCoordinate = locationSearchVM.selectedTripLocation {
+                print("Coordinate available in update UI \(destinationCoordinate.coordinate)")
+                print("DEBUG: Called for user")
+                context.coordinator.addAndSelectAnnotation(withCoordinate: destinationCoordinate.coordinate)
+                context.coordinator.drawRouteToDestination(to: destinationCoordinate.coordinate)
             }
         case .profile:
             break
@@ -51,6 +95,7 @@ struct UberMapView: UIViewRepresentable {
 
 
 extension MapCoordinator {
+    
     func clearRoutesAndRecenteruser() {
         // remove overlay
         parent.mapView.removeOverlays(parent.mapView.overlays)
@@ -72,6 +117,10 @@ class MapCoordinator: NSObject, MKMapViewDelegate {
     var userLocation: CLLocationCoordinate2D?
     
     var region: MKCoordinateRegion?
+    
+    
+    // check whether the route is drawn
+    var isRouteDrawn: Bool = false
     
     init(parent: UberMapView) {
         self.parent = parent
@@ -121,14 +170,75 @@ class MapCoordinator: NSObject, MKMapViewDelegate {
     }
     
     
+    func drawRouteFromDriverToPassenger() {
+        guard let driverLocation = self.userLocation else {
+            print("Could not get the drivers location")
+            return
+        }
+        print("Successfully received drivers location \(driverLocation)")
+        parent.locationSearchVM.drawRouteToPassenger(from: driverLocation) { route in
+            print("Passenger route to be drawn is \(route)")
+            self.isRouteDrawn = true
+            self.parent.mapView.addOverlay(route.polyline)
+            let rectangle = self.parent.mapView.mapRectThatFits(route.polyline.boundingMapRect, edgePadding: .init(top: 74, left: 42, bottom: 600, right: 42))
+            self.parent.mapView.setRegion(MKCoordinateRegion(rectangle), animated: true)
+        }
+    }
+    
+    func clearRouteToPassenger() {
+        // Remove all overlays (this will clear the route)
+        parent.mapView.removeOverlays(parent.mapView.overlays)
+        
+        // clear cached route
+        parent.locationSearchVM.clearCachedRoute()
+
+        // recenter the map
+        if let region = self.region {
+            parent.mapView.setRegion(region, animated: true)
+        }
+
+        // Reset route-drawn flag
+        self.isRouteDrawn = false
+    }
+
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
         let polyline = MKPolylineRenderer(overlay: overlay)
         polyline.strokeColor = .blue
         polyline.lineWidth = 6
+        print("Rendering polyline for route")
         return polyline
     }
-    
-    
-
-
 }
+
+
+
+enum ShouldClearMap {
+    case none
+    case passenger
+    case driver
+    
+    var stringValue: String {
+        switch self {
+        case .none:
+            return "None"
+        case .passenger:
+            return "Passenger"
+        case .driver:
+            return "Driver"
+        }
+    }
+    
+    // Initialize from a string
+    init(from string: String) {
+        switch string {
+        case "Passenger":
+            self = .passenger
+        case "Driver":
+            self = .driver
+        default:
+            self = .none
+        }
+    }
+}
+
