@@ -15,9 +15,8 @@ final class ProfileViewModel: ObservableObject {
             await fetchUserData()
         }
     }
-
     
-    private func fetchUserData() async {
+    func fetchUserData() async {
         guard let uid = AuthManager.shared.getCurrentUserID() else { return }
         
         do {
@@ -25,7 +24,7 @@ final class ProfileViewModel: ObservableObject {
             
             await MainActor.run {
                 self.userModel = usermodel
-                print("Usermodel \(userModel)")
+                print("Project viewModel DEBUG: Usermodel \(userModel)")
             }
         } catch {
             print("Error fetcing user data \(error.localizedDescription)")

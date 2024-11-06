@@ -26,33 +26,32 @@ struct Profile: View {
                 header
                 rectangle
                 
-                if let status = profileVM.userModel?.isDriver {
-                    if status
-                    {
-                        Text("UBER DRIVER")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        HStack(spacing: 12) {
-                            Image(systemName: "car.fill")
-                                .font(.title)
-                            
-                            VStack(alignment: .leading, spacing: 12) {
-                                Text(driverStatus ? "Online" : "Offline")
-                                    .font(.headline)
-                                Text("Set your status to active to be able to receive ride requests")
-                                    .font(.subheadline)
-                                    .foregroundStyle(Color(.systemGray))
-                            }
-                            
-                            Toggle(isOn: $driverStatus, label: {
-                                Text("Label")
-                            })
-                            .labelsHidden()
+                // MARK: show the driver status here if the user is a driver
+                if profileVM.userModel?.isDriver ?? false {
+                    Text("UBER DRIVER")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack(spacing: 12) {
+                        Image(systemName: "car.fill")
+                            .font(.title)
+                        
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text(driverStatus ? "Online" : "Offline")
+                                .font(.headline)
+                            Text("Set your status to active to be able to receive ride requests")
+                                .font(.subheadline)
+                                .foregroundStyle(Color(.systemGray))
                         }
+                        
+                        Toggle(isOn: $driverStatus, label: {
+                            Text("Label")
+                        })
+                        .labelsHidden()
                     }
-                    
                 }
                 
+                
+                // MARK: passenger
                 ScrollView {
                     HStack(spacing: 20) {
                         rowWidget(systemImage: "questionmark.circle.fill", widgetName: "Help")
@@ -139,6 +138,14 @@ struct Profile: View {
                 }
                 .scrollIndicators(.hidden)
             }
+            .refreshable {
+                Task {
+//                    await profileVM.fetchUserData()
+                }
+            }
+            .onAppear {
+                print("Driver status as of onappear is \(profileVM.userModel?.isDriver)")
+            }
             .padding(.horizontal)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -168,7 +175,6 @@ struct Profile: View {
                 DriverSignUp()
             })
         }
-        
     }
 }
 
