@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HumbugerButton: View {
     @Binding var mapState: MapState
+    @Binding var connectToDriver: Bool
     @EnvironmentObject var locationSearchVM: LocationSearchVM
     
     var body: some View {
@@ -51,6 +52,7 @@ struct HumbugerButton: View {
         case .searchingForLocation:
             mapState = .noInput
             locationSearchVM.selectedTripLocation = nil
+            connectToDriver = false
         case .profile:
             break
         }
@@ -58,5 +60,5 @@ struct HumbugerButton: View {
 }
 
 #Preview {
-    HumbugerButton(mapState: .constant(.noInput))
+    HumbugerButton(mapState: .constant(.noInput), connectToDriver: .constant(false))
 }

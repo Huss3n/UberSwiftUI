@@ -24,7 +24,7 @@ final class ProfileViewModel: ObservableObject {
             
             await MainActor.run {
                 self.userModel = usermodel
-                print("Usermodel \(userModel)")
+                print("Project viewModel DEBUG: Usermodel \(userModel)")
             }
         } catch {
             print("Error fetcing user data \(error.localizedDescription)")

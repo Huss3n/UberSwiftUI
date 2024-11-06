@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,7 @@
 		7718BABC2C9848E2003D77D3 /* PassengerPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BABB2C9848E2003D77D3 /* PassengerPickup.swift */; };
 		7718BABE2C985123003D77D3 /* LoadingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7718BABD2C985123003D77D3 /* LoadingCircleView.swift */; };
 		7722AF702CAADB850035D276 /* RideState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7722AF6F2CAADB850035D276 /* RideState.swift */; };
+		7730F18E2CBE84BB00F44EEB /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 7730F18D2CBE84BB00F44EEB /* Starscream */; };
 		774820302C835C28002615A1 /* ManageProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748202F2C835C28002615A1 /* ManageProfile.swift */; };
 		774820322C835D0F002615A1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820312C835D0F002615A1 /* SafariView.swift */; };
 		774820342C836CC2002615A1 /* AccountTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774820332C836CC1002615A1 /* AccountTabs.swift */; };
@@ -38,6 +39,8 @@
 		779A5D3A2C83384C00B13CA7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D392C83384C00B13CA7 /* Settings.swift */; };
 		779A5D3C2C833BD600B13CA7 /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D3B2C833BD600B13CA7 /* SettingsRow.swift */; };
 		779A5D3E2C8357A600B13CA7 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779A5D3D2C8357A600B13CA7 /* Messages.swift */; };
+		77A859372CC8E01D00B47EBC /* PassengerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A859362CC8E01C00B47EBC /* PassengerRoute.swift */; };
+		77A859382CC8E01D00B47EBC /* PassengerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A859362CC8E01C00B47EBC /* PassengerRoute.swift */; };
 		77B91A192C99BB0200929431 /* ConfirmedRide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B91A182C99BB0200929431 /* ConfirmedRide.swift */; };
 		77B91A1A2C99BB0200929431 /* ConfirmedRide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B91A182C99BB0200929431 /* ConfirmedRide.swift */; };
 		77CA5AE62C9C3E3300D3694E /* RideRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CA5AE52C9C3E3300D3694E /* RideRequestModel.swift */; };
@@ -102,6 +105,7 @@
 		779A5D392C83384C00B13CA7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		779A5D3B2C833BD600B13CA7 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
 		779A5D3D2C8357A600B13CA7 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		77A859362CC8E01C00B47EBC /* PassengerRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerRoute.swift; sourceTree = "<group>"; };
 		77B91A182C99BB0200929431 /* ConfirmedRide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedRide.swift; sourceTree = "<group>"; };
 		77CA5AE52C9C3E3300D3694E /* RideRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestModel.swift; sourceTree = "<group>"; };
 		77D5321E2C79CE3D00AA894E /* UberSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,10 @@
 		77E98D0E2C905B6300121FE1 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		7730F1642CBA9B3A00F44EEB /* Backend */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Backend; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		774820362C85911A002615A1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -136,6 +144,7 @@
 				77E98D052C9051F900121FE1 /* FirebaseAuth in Frameworks */,
 				77E98D0B2C9051F900121FE1 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				77E98D072C9051F900121FE1 /* FirebaseAuthCombine-Community in Frameworks */,
+				7730F18E2CBE84BB00F44EEB /* Starscream in Frameworks */,
 				77E98D092C9051F900121FE1 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +239,7 @@
 				77D532302C7A123700AA894E /* Extensions */,
 				77D532332C7A124800AA894E /* Models */,
 				77D532322C7A124200AA894E /* Managers */,
+				7730F1642CBA9B3A00F44EEB /* Backend */,
 				77D532312C7A123D00AA894E /* Shared */,
 				77D532252C79CE3F00AA894E /* Assets.xcassets */,
 				7718BAA12C9180A5003D77D3 /* GoogleService-Info.plist */,
@@ -281,6 +291,7 @@
 				7718BAA72C9194D1003D77D3 /* DatabaseManager.swift */,
 				7718BAAA2C919BF9003D77D3 /* RideRequestManager.swift */,
 				77B91A182C99BB0200929431 /* ConfirmedRide.swift */,
+				77A859362CC8E01C00B47EBC /* PassengerRoute.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -371,6 +382,9 @@
 			dependencies = (
 				7748203E2C85911A002615A1 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				7730F1642CBA9B3A00F44EEB /* Backend */,
+			);
 			name = UberSwiftUITests;
 			productName = UberSwiftUITests;
 			productReference = 774820392C85911A002615A1 /* UberSwiftUITests.xctest */;
@@ -388,12 +402,16 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				7730F1642CBA9B3A00F44EEB /* Backend */,
+			);
 			name = UberSwiftUI;
 			packageProductDependencies = (
 				77E98D042C9051F900121FE1 /* FirebaseAuth */,
 				77E98D062C9051F900121FE1 /* FirebaseAuthCombine-Community */,
 				77E98D082C9051F900121FE1 /* FirebaseFirestore */,
 				77E98D0A2C9051F900121FE1 /* FirebaseFirestoreCombine-Community */,
+				7730F18D2CBE84BB00F44EEB /* Starscream */,
 			);
 			productName = UberSwiftUI;
 			productReference = 77D5321E2C79CE3D00AA894E /* UberSwiftUI.app */;
@@ -429,6 +447,7 @@
 			mainGroup = 77D532152C79CE3D00AA894E;
 			packageReferences = (
 				77E98D032C90507700121FE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7730F1882CBA9D0900F44EEB /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = 77D5321F2C79CE3D00AA894E /* Products */;
 			projectDirPath = "";
@@ -470,6 +489,7 @@
 				7748203C2C85911A002615A1 /* UberSwiftUITests.swift in Sources */,
 				77B91A192C99BB0200929431 /* ConfirmedRide.swift in Sources */,
 				7718BAA92C9194D1003D77D3 /* DatabaseManager.swift in Sources */,
+				77A859382CC8E01D00B47EBC /* PassengerRoute.swift in Sources */,
 				7718BAAC2C919BF9003D77D3 /* RideRequestManager.swift in Sources */,
 				77CA5AE62C9C3E3300D3694E /* RideRequestModel.swift in Sources */,
 			);
@@ -502,6 +522,7 @@
 				77099F972C9EE09F00A73C53 /* HomeViewModel.swift in Sources */,
 				77D532392C7A12A300AA894E /* Home.swift in Sources */,
 				77D532222C79CE3D00AA894E /* UberSwiftUIApp.swift in Sources */,
+				77A859372CC8E01D00B47EBC /* PassengerRoute.swift in Sources */,
 				7718BABA2C9835B3003D77D3 /* ProfileViewModel.swift in Sources */,
 				774820432C859400002615A1 /* Wallet.swift in Sources */,
 				779A5D3A2C83384C00B13CA7 /* Settings.swift in Sources */,
@@ -790,6 +811,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7730F1882CBA9D0900F44EEB /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.8;
+			};
+		};
 		77E98D032C90507700121FE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -801,6 +830,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7730F18D2CBE84BB00F44EEB /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7730F1882CBA9D0900F44EEB /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
 		77E98D042C9051F900121FE1 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 77E98D032C90507700121FE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -15,6 +15,11 @@ import CoreLocation
 final class DatabaseManager {
     static let shared = DatabaseManager()
     
+    private var listener: ListenerRegistration?
+    
+    @Published var routeToPassenger: ShouldClearMap?
+    @Published var cancelledTrip: Bool = false
+    
     
     // Check if user exists in Firestore
     func doesUserExist(userID: String) async throws -> Bool {
@@ -45,15 +50,27 @@ final class DatabaseManager {
                     "longitude": userModel.coordinates.longitude
                 ],
                 "isDriver": userModel.isDriver ?? false,
-                "isRideSent": userModel.isRideSent ?? false
+                "isRideSent": userModel.isRideSent ?? false,
+                "isRideAccepted": userModel.isRideAccepted ?? false,
+                "routeToPassenger": userModel.routeToPassenger ?? ShouldClearMap.none.stringValue
             ]
-            
             
             try await db.collection("users").document(userModel.userID).setData(userData)
         } catch {
             print("Error saving user data \(error.localizedDescription)")
         }
     }
+    
+    
+    /*
+     let userID: String
+     let name: String
+     let coordinates: CLLocationCoordinate2D
+     let isDriver: Bool?
+     let isRideSent: Bool?
+     let isRideAccepted: Bool?
+     let routeToPassenger: Bool?
+     */
     
     // fetch saved data
     func fetchUserFromDatabase(for userID: String) async throws -> UserModel? {
@@ -74,11 +91,87 @@ final class DatabaseManager {
             print("Error parsing user data")
             return nil
         }
+        let isRideSent = data["isRideSent"] as? Bool
+        let isRideAccepted = data["isRideAccepted"] as? Bool
+        let routeToPassenger = data["routeToPassenger"] as? ShouldClearMap
+        let cancelledTrip = data["cancalledTrip"] as? Bool
         
         let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let userModel = UserModel(userID: userID, name: name, coordinates: coordinates, isDriver: isDriver)
+        let userModel = UserModel(userID: userID, name: name, coordinates: coordinates, isDriver: isDriver, isRideSent: isRideSent, isRideAccepted: isRideAccepted, routeToPassenger: routeToPassenger, isCancelled: cancelledTrip)
         print(userModel)
         return userModel
     }
     
+    func fetchPassengerCoordinates(completion: @escaping (CLLocationCoordinate2D?) -> Void) async {
+        guard let rideRequestID = AuthManager.shared.getCurrentUserID() else { return }
+        let db = Firestore.firestore()
+        
+        do {
+            let docSnap = try await db.collection("users").document("HxPVVW8F5KX0z1VYGWuq81AZa9r1").getDocument()
+            guard let data = docSnap.data(),
+                  let pickupCoordinates = data["coordinates"] as? [String: Double],
+                  let latitude = pickupCoordinates["latitude"],
+                  let longitude = pickupCoordinates["longitude"] else {
+                print("No pickup coordinates found")
+                completion(nil)
+                return
+            }
+            
+            let passengerLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            print("Pickup coordinates found, \(passengerLocation)")
+            completion(passengerLocation)
+            
+        } catch {
+            print("Error fetcing passenger coordinates")
+            completion(nil)
+        }
+    }
+    
+    
+    func startListenerForRoutePassenger() {
+        let db = Firestore.firestore()
+        // Listening to the collection or document
+        listener = db.collection("users")
+            .document("VbbNg4JpeBhiqYfmecER9PJRKan2")
+            .addSnapshotListener { [weak self] documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error?.localizedDescription ?? "Unknown")")
+                    return
+                }
+                
+                let routeToPassString = document.data()?["routeToPassenger"] as? String ?? "None"
+                let routeToPass = ShouldClearMap(from: routeToPassString)
+                DispatchQueue.main.async {
+                    if self?.routeToPassenger != routeToPass {
+                        self?.routeToPassenger = routeToPass
+                        print("value of route to passenger updated")
+                    }
+                }
+            }
+    }
+    
+    
+    func startListeningForCancelledTrip() {
+        let db = Firestore.firestore()
+        
+        listener = db.collection("users")
+            .document("VbbNg4JpeBhiqYfmecER9PJRKan2")
+            .addSnapshotListener{ [weak self] documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document : \(error?.localizedDescription ?? "Unknown")")
+                    return
+                }
+                
+                let tripStatus = document.data()?["cancelTrip"] as? Bool ?? false
+                
+                DispatchQueue.main.async {
+                    if self?.cancelledTrip != tripStatus {
+                        self?.cancelledTrip = tripStatus
+                    }
+                }
+            }
+    }
+    
+    
 }
+

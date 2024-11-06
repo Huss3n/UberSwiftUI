@@ -17,7 +17,6 @@ final class LocationSearchVM: NSObject, ObservableObject, MKLocalSearchCompleter
     @Published var pickupTime: String?
     @Published var dropoffTime: String?
     
-
     
     var querry: String = "" {
         didSet {
@@ -25,19 +24,24 @@ final class LocationSearchVM: NSObject, ObservableObject, MKLocalSearchCompleter
         }
     }
     
-    override init() {
-        super.init()
-        searchCompleter.delegate = self
-        searchCompleter.queryFragment = querry
-    }
-    
+    // cache the result
+    var cachedRoute: MKRoute?
+   
+
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         self.results = searchCompleter.results
     }
     
     var userLocation: CLLocationCoordinate2D?
-    
+    var mapView: MKMapView?  // Add MKMapView property
+
+    // Initialize with optional MKMapView
+    init(mapView: MKMapView? = nil) {
+          super.init()
+          self.mapView = mapView
+          searchCompleter.delegate = self
+      }
     
     func calculateTripAmount(for carType: CarSelection) -> Double {
         guard let destinationCoordinate = selectedTripLocation?.coordinate else { return 0.0 }
@@ -51,6 +55,11 @@ final class LocationSearchVM: NSObject, ObservableObject, MKLocalSearchCompleter
     }
     
     
+    func clearCachedRoute() {
+        self.cachedRoute = nil
+    }
+
+     
     func getPickupAndDropoffTime(with ETA: Double) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
@@ -83,6 +92,61 @@ final class LocationSearchVM: NSObject, ObservableObject, MKLocalSearchCompleter
             completion(route)
         }
     }
+
+    
+    // MARK: Draw the route to the passenger from the drivers location
+    func drawRouteToPassenger(
+        from driverLocation: CLLocationCoordinate2D,
+        completion: @escaping (MKRoute) -> Void
+    ) {
+        // check if its in the cache before we call again
+        if let cachedRoute = cachedRoute {
+            print("Using cached route")
+            completion(cachedRoute)
+            return
+        }
+        
+        // if not in the cache fetch it
+            Task {
+                await DatabaseManager.shared.fetchPassengerCoordinates { passengerCoordinates in
+                    guard let passengerCoordinates else { return }
+                    
+                    let driverPlacemark = MKPlacemark(coordinate: driverLocation)
+                    let passengerPlacemark = MKPlacemark(coordinate: passengerCoordinates)
+                    
+                    let request = MKDirections.Request()
+                    request.source = MKMapItem(placemark: driverPlacemark)
+                    request.destination = MKMapItem(placemark: passengerPlacemark)
+                    request.transportType = .automobile
+                    
+                    let directions = MKDirections(request: request)
+                    directions.calculate { response, error in
+                        if let err = error {
+                            print("Error calculating directions \(err.localizedDescription)")
+                            return
+                        }
+                        
+                        guard let route = response?.routes.first else { return }
+                        self.getPickupAndDropoffTime(with: route.expectedTravelTime)
+                        
+                        // cache the fetched route
+                        self.cachedRoute = route
+                        completion(route)
+                        
+//                        let driverAnnotation = MKPointAnnotation()
+//                        driverAnnotation.coordinate = driverLocation
+//                        driverAnnotation.title = "Driver"
+//                        
+//                        let passengerAnnotation = MKPointAnnotation()
+//                        passengerAnnotation.coordinate = passengerCoordinates
+//                        passengerAnnotation.title = "User"
+//                        
+//                        self.mapView?.addAnnotations([driverAnnotation, passengerAnnotation])
+                    }
+                }
+            }
+    }
+
     
     // MARK: -Helper
     func selectLocation(_ locationSearch: MKLocalSearchCompletion) {
