@@ -33,6 +33,21 @@ This project is an Uber clone built using **SwiftUI** and **Firebase**. The app 
 - **Ride History**
   - View past rides with details like route, fare, and driver information.
   - Re-book previous rides.
+ 
+## Screenshots 
+
+<p>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/home.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/request.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/connecting.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/riderequested.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/profile.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/wallet.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/driveraccount.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/messages.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/account.png", width="200" hspace="4"/>
+     <img src="https://github.com/Huss3n/UberSwiftUI/blob/main/screenshots/makemoney.png", width="200" hspace="4"/>
+</p>
 
 ## Installation
 
