@@ -44,7 +44,7 @@ struct ConfirmedRide: View {
                     .clipShape(Circle())
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("John Doe")
+                    Text(RideRequestManager.shared.driverModel?.name ?? "Jonh Doe")
                     HStack {
                         Image(systemName: "star.fill")
                             .foregroundStyle(.yellow)

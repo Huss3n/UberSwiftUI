@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthView: View {
     @StateObject private var authVM = AuthVM()
-//    @StateObject var locationSearchVM = LocationSearchVM()
+    @StateObject var locationSearchVM = LocationSearchVM()
 
     
     @Environment(\.dismiss) var dismiss
@@ -122,7 +122,7 @@ struct AuthView: View {
                         dismiss()
                     }
                 
-            }
+            } 
             .padding()
             .fullScreenCover(isPresented: $verificationCodeSent) {
                 VerificationCodeView(authVM: authVM, successfulAuth: $successfulAuth)
@@ -130,13 +130,11 @@ struct AuthView: View {
             .navigationDestination(isPresented: $successfulAuth) {
                 Home()
                     .navigationBarBackButtonHidden()
-//                    .environmentObject(locationSearchVM)
+                    .environmentObject(locationSearchVM)
             }
         }
       
     }
-
-    
     
     private func continueWith(systemImage: String, name: String, imageName: String? = nil) -> some View {
         HStack {
