@@ -48,15 +48,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct UberSwiftUIApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var locationSearchVM = LocationSearchVM()
+//    @StateObject var locationSearchVM = LocationSearchVM()
+    
+//    @AppStorage("selectedState") var selectedState: AppAppearance = .system
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-//                Splash() 
-                Home()
-                    .environmentObject(locationSearchVM)
+                Splash() 
+//                Home()
+//                    .preferredColorScheme(colorScheme)
+//                    .environmentObject(locationSearchVM)
             }
         }
     }
+    
+//    private var colorScheme: ColorScheme? {
+//         switch selectedState {
+//         case .light: return .light
+//         case .dark: return .dark
+//         case .system: return nil
+//         }
+//     }
 }

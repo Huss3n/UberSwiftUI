@@ -153,7 +153,7 @@ struct PassengerPickup: View {
                         Divider()
                         
                         HStack {
-                            Text("Artcaffe, Kileleshwa")
+                            Text("505, Kintyre Way")
                             Spacer()
                             Text("5.2 Km")
                         }

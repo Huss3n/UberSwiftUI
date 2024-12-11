@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct Settings: View {
-    @Binding var showSettings: Bool
+    @State private var showAppearance: Bool = false
+    @AppStorage("selectedState") var selectedState: AppAppearance = .system
+    @Environment(\.dismiss) var dismiss
+    @State var colorScheme: ColorScheme = .light
+    
     
     var body: some View {
         NavigationStack {
@@ -62,7 +66,8 @@ struct Settings: View {
                     Image(systemName: "xmark")
                         .font(.title3.bold())
                         .onTapGesture {
-                            showSettings.toggle()
+                            //showSettings.toggle()
+                            dismiss()
                         }
                 }
             }
@@ -72,7 +77,7 @@ struct Settings: View {
 }
 
 #Preview {
-    Settings(showSettings: .constant(true))
+    Settings()
 }
 
 
@@ -81,7 +86,7 @@ extension Settings {
     private var header: some View {
         HStack(alignment: .center, spacing: 10) {
             Image(systemName: "person.fill")
-                .foregroundStyle(.gray.opacity(0.5))
+                .foregroundStyle(.primary.opacity(0.5))
                 .font(.largeTitle)
                 .padding(20)
                 .background(Color(.systemGray6))

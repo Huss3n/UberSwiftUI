@@ -52,7 +52,7 @@ final class DatabaseManager {
                 "isDriver": userModel.isDriver ?? false,
                 "isRideSent": userModel.isRideSent ?? false,
                 "isRideAccepted": userModel.isRideAccepted ?? false,
-                "routeToPassenger": userModel.routeToPassenger ?? ShouldClearMap.none.stringValue
+                "routeToPassenger": userModel.routeToPassenger?.stringValue ?? "None"
             ]
             
             try await db.collection("users").document(userModel.userID).setData(userData)
@@ -107,7 +107,7 @@ final class DatabaseManager {
         let db = Firestore.firestore()
         
         do {
-            let docSnap = try await db.collection("users").document("HxPVVW8F5KX0z1VYGWuq81AZa9r1").getDocument()
+            let docSnap = try await db.collection("users").document("84vZFDN0jDOS4nUUzO7EriK8fmT2").getDocument()
             guard let data = docSnap.data(),
                   let pickupCoordinates = data["coordinates"] as? [String: Double],
                   let latitude = pickupCoordinates["latitude"],

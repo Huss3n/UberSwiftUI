@@ -137,8 +137,8 @@ class MapCoordinator: NSObject, MKMapViewDelegate {
                 longitude: coordinate.longitude
             ),
             span: MKCoordinateSpan(
-                latitudeDelta: 0.005,
-                longitudeDelta: 0.005
+                latitudeDelta: 0.004,
+                longitudeDelta: 0.004
             )
         )
         self.region = region
@@ -180,7 +180,7 @@ class MapCoordinator: NSObject, MKMapViewDelegate {
             print("Passenger route to be drawn is \(route)")
             self.isRouteDrawn = true
             self.parent.mapView.addOverlay(route.polyline)
-            let rectangle = self.parent.mapView.mapRectThatFits(route.polyline.boundingMapRect, edgePadding: .init(top: 74, left: 42, bottom: 600, right: 42))
+            let rectangle = self.parent.mapView.mapRectThatFits(route.polyline.boundingMapRect, edgePadding: .init(top: 64, left: 26, bottom: 450, right: 26))
             self.parent.mapView.setRegion(MKCoordinateRegion(rectangle), animated: true)
         }
     }

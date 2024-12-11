@@ -45,6 +45,7 @@ struct Home: View {
                 
                 if mapState == .searchingForLocation {
                     SearchView(mapState: $mapState)
+                        
                 } else if mapState == .noInput {
                     LocationSearchView()
                         .padding(.top, 64)
@@ -53,7 +54,9 @@ struct Home: View {
                                 mapState = .searchingForLocation
                             }
                         }
+                        .opacity(homeViewModel.userModel?.isDriver ?? false ? 0 : 1)
                 }
+                
                 
                 HumbugerButton(mapState: $mapState, connectToDriver: $connectToDriver)
             }
@@ -103,7 +106,7 @@ struct Home: View {
             )
         ) {
             // ydN7t8p9VgPiHvDYf5XCRmLda773
-            PassengerPickup(passengerID: "HxPVVW8F5KX0z1VYGWuq81AZa9r1")
+            PassengerPickup(passengerID: "84vZFDN0jDOS4nUUzO7EriK8fmT2")
                 .presentationDetents([.medium])
                 .onAppear {
                     print("Passenger pick up appeared")

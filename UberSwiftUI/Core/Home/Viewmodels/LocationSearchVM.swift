@@ -87,7 +87,11 @@ final class LocationSearchVM: NSObject, ObservableObject, MKLocalSearchCompleter
                 return
             }
             
-            guard let route = response?.routes.first else { return }
+            guard let route = response?.routes.first else {
+                print("No route found")
+                return
+            }
+            print("Route fetched successfuly")
             self.getPickupAndDropoffTime(with: route.expectedTravelTime)
             completion(route)
         }

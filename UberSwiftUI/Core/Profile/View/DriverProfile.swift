@@ -54,6 +54,8 @@ struct DriverProfile: View {
     
     @Binding var connectToDriver: Bool
     
+    @State private var showCancelReason: Bool = false
+    
     init(driverID: String, connectToDriver: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: DriverViewModel(driverID: driverID))
         self._connectToDriver = connectToDriver
@@ -70,10 +72,10 @@ struct DriverProfile: View {
             
             HStack(alignment: .top, spacing: 12) {
                 VStack(alignment: .leading) {
-                    Text("Meet your driver at Artcaffe,")
+                    Text("Meet your driver at 505,")
                         .font(.headline)
                     
-                    Text("Kileleshwa")
+                    Text("Kintyre Way")
                         .font(.headline)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -130,10 +132,7 @@ struct DriverProfile: View {
             }
             
             Button(action: {
-                Task {
-                    connectToDriver = false
-                    await viewModel.cancelTrip()
-                }
+                showCancelReason.toggle()
             }) {
                 Text("CANCEL TRIP")
                     .font(.headline)
@@ -146,6 +145,15 @@ struct DriverProfile: View {
             
         }
         .padding(.horizontal)
+        .sheet(isPresented: $showCancelReason) {
+            CancelRideOptions(cancelFunc: {
+                Task {
+                    connectToDriver = false
+                    await viewModel.cancelTrip()
+                }
+            })
+            .presentationDetents([.fraction(0.7)])
+        }
     }
 }
 

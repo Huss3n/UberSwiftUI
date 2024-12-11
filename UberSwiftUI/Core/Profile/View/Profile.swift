@@ -160,7 +160,7 @@ struct Profile: View {
             }
             .background(Color.appTheme.backgroundColor)
             .fullScreenCover(isPresented: $showSettings, content: {
-                Settings(showSettings: $showSettings)
+                Settings()
             })
             .fullScreenCover(isPresented: $showMessages, content: {
                 Messages(showMessages: $showMessages)

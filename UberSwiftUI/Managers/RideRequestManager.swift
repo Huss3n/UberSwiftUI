@@ -117,7 +117,7 @@ final class RideRequestManager: ObservableObject {
     func fetchPassengerDetails(for passengerID: String, completion: @escaping (UserModel?) -> Void) async {
         
         // MARK: Remove hard coded id - used for debugging
-        let hardcodedId = "HxPVVW8F5KX0z1VYGWuq81AZa9r1"
+        let hardcodedId = "84vZFDN0jDOS4nUUzO7EriK8fmT2"
         
         do {
             guard let userModel = try await DatabaseManager.shared.fetchUserFromDatabase(for: hardcodedId) else { return }
